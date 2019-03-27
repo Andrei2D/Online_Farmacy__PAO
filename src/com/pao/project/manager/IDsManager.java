@@ -29,8 +29,10 @@ public class IDsManager {
     }
 
     public boolean setNameForID (String name, Integer ID) {
-        if(!namesHashMap.containsKey(ID))
-            return false;
+        if(!objectHashMap.containsKey(ID)) {
+            System.out.println("NOT GOOD!!!");
+
+            return false;}
 
         namesHashMap.put(name, ID);
         return true;

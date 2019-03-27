@@ -1,9 +1,13 @@
 package com.pao.project;
 
 import com.pao.project.actors.User;
+import sun.rmi.runtime.Log;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class Main {
 
@@ -18,7 +22,6 @@ public class Main {
             option = cin.nextInt();
             doStuff(option);
         }
-
     }
 
     static void outputs() {
