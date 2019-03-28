@@ -8,17 +8,15 @@ import java.util.Scanner;
 import com.pao.project.manager.IDsManager;
 
 public class User {
-
-    static int class_mask ;
+    //must be default
+    public static int class_mask ;
     public static IDsManager manager;
 
     static {
         class_mask = 0b1110000000000000;
-    }
-
-    {
         manager = new IDsManager(class_mask);
     }
+
 
     protected Integer uniqID;
     protected String username;

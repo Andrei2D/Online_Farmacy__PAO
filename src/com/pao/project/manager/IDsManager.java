@@ -10,9 +10,9 @@ import java.util.HashMap;
 */
 public class IDsManager {
 
-    private int ID_reference = 1;
+    public int ID_reference = 1;
     private int ID_mask;
-
+//
     private HashMap<Integer, Object> objectHashMap = new HashMap<Integer, Object>();
     private HashMap<String, Integer> namesHashMap = new HashMap<String, Integer>();
 
@@ -23,8 +23,8 @@ public class IDsManager {
     public int generateID(Object context) {
         int ID = ID_mask | ID_reference;
         objectHashMap.put(ID, context);
-
-        ID_reference ++;
+        System.out.println("HELLO FROM ID GENERATE (" + ID_reference + ") !");
+        ID_reference++;
         return ID;
     }
 
@@ -38,20 +38,40 @@ public class IDsManager {
         return true;
     }
 
-    public void removeElement(Integer ID) {
+    public boolean removeElement(Integer ID) {
+        if(!objectHashMap.containsKey(ID))
+            return false;
         objectHashMap.remove(ID);
+        return true;
     }
 
-    public void removeElement(String name) {
-        objectHashMap.remove(namesHashMap.get(name));
-        namesHashMap.remove(name);
+    public boolean removeElement(String name) {
+        if(!namesHashMap.containsKey(name))
+            return false;
+        Integer ID = namesHashMap.get(name);
+
+        if(!objectHashMap.containsKey(ID))
+            return false;
+
+        Object a = objectHashMap.remove(namesHashMap.get(name));
+        Integer b =  namesHashMap.remove(name);
+
+        System.out.println("@\tObject " + a.toString() + " removed");
+
+        return true;
     }
 
     public Object getElement(Integer ID) {
+        if(!objectHashMap.containsKey(ID))
+            return null;
         return objectHashMap.get(ID);
     }
 
     public Object getElement(String username) {
-        return objectHashMap.get(namesHashMap.get(username));
+        if(!namesHashMap.containsKey(username))
+            return null;
+        Integer ID = namesHashMap.get(username);
+
+        return getElement(ID);
     }
 }
