@@ -1,20 +1,17 @@
 package com.pao.project.actors;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.HashMap;
+import java.io.IOException;
 import java.util.Scanner;
 
-import com.pao.project.manager.IDsManager;
+import com.pao.project.manager.*;
 
-public class User {
-    //must be default
-    public static int class_mask ;
-    public static IDsManager manager;
+
+public class User implements Manageable {
+    //protected in later versions...
+    public static IDentity identity;
 
     static {
-        class_mask = 0b1110000000000000;
-        manager = new IDsManager(class_mask);
+        identity = new IDentity(Mask.User.getMask());
     }
 
 
@@ -22,15 +19,22 @@ public class User {
     protected String username;
     protected String password;
 
+    public User() {
+        username = password = "";
+    }
+
     public User(String username, String password) {
 
 
         this.username = username;
         this.password = password;
 
-        uniqID = manager.generateID(this);
-        manager.setNameForID(this.username, uniqID);
+        uniqID = identity.incrementalIndexing(this);
+        identity.setNameForID(this.username, this.uniqID);
+    }
 
+    public String getUsername() {
+        return username;
     }
 
     @Override
@@ -51,11 +55,54 @@ public class User {
         System.out.print("Insert password: ");
         String password = lineScanner.nextLine();
 
-        new User(username,password);
+        new User(username, password);
 
 
         return username;
     }
 
+    @Override
+    public String[] dataToStore() {
+        String[] data = new String[3];
+        data[0] = uniqID.toString();
+        data[1] = username;
+        data[2] = password;
+        return  data;
+    }
 
+    @Override
+    public String[] importData(Scanner fin) throws IOException {
+        String[] data = new String[3];
+
+        if(fin.hasNext("(\\d+)"))
+                data[0] = String.valueOf(fin.nextInt());
+        data[1] = fin.next();
+        data[2] = fin.next();
+        fin.nextLine();
+
+        return data;
+    }
+
+    @Override
+    public void incrementalSetter(String[] data) {
+        this.uniqID = identity.incrementalIndexing(this);
+        this.username = data[1];
+        this.password = data[2];
+        identity.setNameForID(this.username, this.uniqID);
+    }
+
+    @Override
+    public void nonIncrementalSetter(String[] data) {
+        this.uniqID = Integer.parseInt(data[0]);
+        this.username = data[1];
+        this.password = data[2];
+        identity.nonIncrementalIndexing(this, this.uniqID);
+        identity.setNameForID(this.username, this.uniqID);
+    }
+
+    @Override
+    public int getClassMask() {
+        return Mask.User.getMask();
+
+    }
 }

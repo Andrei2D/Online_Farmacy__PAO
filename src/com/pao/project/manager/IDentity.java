@@ -1,31 +1,73 @@
 package com.pao.project.manager;
 
-
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Scanner;
+
 /**
- The goal of this class is for each class to have a manager of
+ The goal of this class is for each class to have a identity of
  the objects that have been created of that type and to properly generate
  ID's relative to a mask that each class will have specific
 
 */
-public class IDsManager {
+public class IDentity {
 
-    public int ID_reference = 1;
+    public int ID_reference;
     private int ID_mask;
-//
+
+    //EXPORT SPECIFIC
+    private  int elem_numb = 0;
+
     private HashMap<Integer, Object> objectHashMap = new HashMap<Integer, Object>();
     private HashMap<String, Integer> namesHashMap = new HashMap<String, Integer>();
 
-    public IDsManager(int ID_mask) {
-        this.ID_mask = ID_mask;
+    public  IDentity (int ID_mask) {
+        this(ID_mask, 1);
     }
 
-    public int generateID(Object context) {
+    public IDentity(int ID_mask, int ID_reference) {
+
+        this.ID_mask = ID_mask;
+        this.ID_reference = ID_reference;
+    }
+
+    int setIDreference(int new_ID_Reference) {
+        if(new_ID_Reference > ID_reference) {
+            int prev = ID_reference;
+            ID_reference = new_ID_Reference;
+            return prev;
+        }
+        return  0;
+    }
+
+    public int getIDreference () {
+        return ID_reference;
+    }
+
+    public int incrementalIndexing (Object context) {
         int ID = ID_mask | ID_reference;
-        objectHashMap.put(ID, context);
-        System.out.println("HELLO FROM ID GENERATE (" + ID_reference + ") !");
         ID_reference++;
+        nonIncrementalIndexing(context, ID);
         return ID;
+    }
+
+
+    public void nonIncrementalIndexing(Object context, int ID) {
+        objectHashMap.put(ID, context);
+        elem_numb++;
+    }
+
+    /** I WILL NEED AN ERROR TYPE FOR THAT*/
+    public boolean importElement(Object context, String name, Integer ID) {
+        if(!objectHashMap.containsKey(ID) &&
+                !namesHashMap.containsKey(name)) {
+            objectHashMap.put(ID, context);
+            namesHashMap.put(name, ID);
+            setIDreference(ID + 1);
+        }
+        return true;
     }
 
     public boolean setNameForID (String name, Integer ID) {
@@ -53,10 +95,10 @@ public class IDsManager {
         if(!objectHashMap.containsKey(ID))
             return false;
 
-        Object a = objectHashMap.remove(namesHashMap.get(name));
-        Integer b =  namesHashMap.remove(name);
+        objectHashMap.remove(namesHashMap.get(name));
+        namesHashMap.remove(name);
 
-        System.out.println("@\tObject " + a.toString() + " removed");
+        elem_numb--;
 
         return true;
     }
@@ -74,4 +116,5 @@ public class IDsManager {
 
         return getElement(ID);
     }
+
 }

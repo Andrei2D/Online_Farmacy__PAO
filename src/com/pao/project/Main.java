@@ -1,24 +1,33 @@
 package com.pao.project;
 
 import com.pao.project.actors.User;
+import com.pao.project.manager.Manageable;
+import com.pao.project.manager.Manager;
+import com.pao.project.manager.Mask;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     static Scanner cin;
-    static ArrayList<String> users = new ArrayList<>();
+    static Manager users = new Manager();
 
     public static void main(String[] args) throws IOException {
+        cin = new Scanner(System.in);
 
         readTest();
     }
 
-    static void readTest() {
+
+    static void readTest() throws
+            InputMismatchException, IOException{
         int option = -1;
-        cin = new Scanner(System.in);
 
         while(option != 0) {
             outputs();
@@ -35,29 +44,26 @@ public class Main {
         System.out.println("3. Show infos about users");
         System.out.println("4. Show users with the ID_ref");
         System.out.println("5. Remove user");
+        System.out.println("6. Export data");
+        System.out.println("7. Import data");
         System.out.println("0. Exit");
         System.out.println("***");
     }
 
-    /** 2. Show users*/
-    static void showUsers () {
-        if(users.size() == 0) {
-            System.out.println("# No users created yet #");
-            return;
-        }
+    /** 1. Create new user */
+    static void createUser () throws IOException{
+        System.out.println("###");
 
-        System.out.println("##");
+        System.out.println("Input the USERNAME and the PASSWORD:\n");
+        users.inputData(cin, Mask.User.getMask());
+        String userCreated = ((User)users.get(-1)).getUsername();
+        System.out.println("User " + userCreated + " was created !" );
 
-        System.out.println("\t Users created so far: ");
-        for (String usr : users) {
-            System.out.println("\t\t" + usr);
-        }
-
-        System.out.println("##");
+        System.out.println("###");
     }
 
-    /** 2. Show users from ID_Manager*/
-    static void showUsersByReference() {
+    /** 2. Show users */
+    static void showUsers() {
         if(users.size() == 0) {
             System.out.println("# No users created yet #");
             return;
@@ -67,71 +73,76 @@ public class Main {
 
         System.out.println("\t Infos of users created: ");
 
-        for (String usr : users) {
-            User currUser = (User) User.manager.getElement(usr);
-            if(null == currUser) {
-                System.out.println("\t\tWTF ! NULL SHIT FOR " + usr);
-            }
-            else
-                System.out.println("\t\t" + currUser.toString());
+        for (int i = 0; i < users.size(); i++) {
+            User currUser = (User) users.get(i);
+                System.out.println("\t\t" + currUser.getUsername());
         }
         System.out.println("##");
     }
 
-    static void showUsersByID() {
-        System.out.println("##");
-
-        int ref = User.manager.ID_reference;
-        System.out.println("Reference: " + ref);
-        for (int integ = 1; integ < ref; integ++) {
-            User user = (User) User.manager.getElement(User.class_mask | integ);
-            if(user == null) {
-                int unNr = User.class_mask | integ;
-                System.out.println("\tThis user (ID= " + unNr + ") does not exist..");
-            }
-            else {
-                System.out.println("\t" + user.toString());
-            }
+    /** 3. Show infos about users*/
+    static void showUsersByReference () {
+        if(users.size() == 0) {
+            System.out.println("# No users created yet #");
+            return;
         }
 
         System.out.println("##");
 
-    }
-        /**5. Remove user */
-    static void removeUser() {
-        System.out.println("##");
-        System.out.println("\tInput username to remove: ");
-        String username;
-        username = cin.next();
-        User user = (User) User.manager.getElement(username);
-        if(user == null) {
-            System.out.println("\tUser \'" + username + "\' does not exist");
+        System.out.println("\t Users created so far: ");
+        for (int i = 0; i < users.size(); i++) {
+            User usr = (User) users.get(i);
+            System.out.println("\t\t" + usr);
         }
-        else {
-            if(User.manager.removeElement(username)) {
-
-                for (String elem : users) {
-                    if(elem.equals(username)) {
-                        users.remove(elem);
-                        break;
-                    }
-
-                }
-                System.out.println("\tUser \'" + username + "\' removed");
-            }
-            else
-                System.out.println("\tUser \'" + username + "\' FAILED to be removed");
-        }
-
 
         System.out.println("##");
     }
 
-    static void doStuff (int opt) {
+    /** 4. Import users */
+    static void importUsers() {
+        System.out.print("Input a filename: ");
+        String file = cin.next();
+        try {
+            users.loadData(file);
+        } catch (FileNotFoundException e) {
+            System.out.println("Umm.. the file does not exist");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Incomplete data");
+        }
+        if(users.size() != 0)
+            System.out.println("Import successful !");
+
+    }
+
+    /** 5. Export users*/
+    static void exportUsers() {
+        System.out.println("Input a filename: ");
+        String file = cin.next();
+        boolean done = false;
+        try {
+            done = users.saveData(file);
+        }
+        catch (IOException e) {
+            System.out.println("EXPORT FAILED: File already exists");
+        }
+        finally {
+            if(done) System.out.println("Exportation done");
+            else System.out.println("Exportation failed");
+        }
+
+    }
+
+    /** To do */
+    static void removeUser (){
+
+    }
+
+    static void doStuff (int opt) throws IOException {
         switch (opt) {
             case 1 :
-                users.add(User.createUser());
-                System.out.println("# User " + users.get(users.size() - 1) + " was created ! #");
+
+                createUser();
                 break;
 
             case 2:
@@ -143,15 +154,19 @@ public class Main {
                 break;
 
             case 4:
-                showUsersByID();
+                importUsers();
                 break;
 
             case 5:
-                removeUser();
+                exportUsers();
                 break;
 
             case 0:
                 System.out.println("Session ended...");
+                break;
+
+            default:
+                System.out.println("> INVALID OPTION ! <");
                 break;
         }
         System.out.println();
