@@ -72,6 +72,11 @@ public class User implements Manageable {
     }
 
     @Override
+    public String getName() {
+        return getUsername();
+    }
+
+    @Override
     public String[] importData(Scanner fin) throws IOException {
         String[] data = new String[3];
 
@@ -105,5 +110,17 @@ public class User implements Manageable {
     public int getClassMask() {
         return Mask.User.getMask();
 
+    }
+
+    @Override
+    public String[] inputData(Scanner fin) {
+        String[] data = new String[3];
+
+        System.out.println("Input username: ");
+        data[1] = fin.next();
+        System.out.println("Input password: ");
+        data[2] = fin.next();
+
+        return data;
     }
 }

@@ -84,13 +84,11 @@ public class Manager {
 
     public Manageable inputData(Scanner cin, int classMask) throws IOException{
         Manageable item = newElementByMask(classMask);
-        item.incrementalSetter(item.importData(cin));
+        item.incrementalSetter(item.inputData(cin));
         itemsList.add(item);
         return item;
     }
 
-
-    /** Object reference replaceable with Manageable interface reference*/
     private Manageable newElementByMask (int mask) {
 
         if (Mask.User.getMask() == mask) {

@@ -91,4 +91,21 @@ public class Pills extends Product {
 
         return bigString;
     }
+
+    @Override
+    public String[] inputData(Scanner fin) {
+        String[] oldData = super.inputData(fin);
+        String[] newData = new String[nrOfData()];
+        int old = super.nrOfData();
+        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
+
+        System.out.print("Input the NR OF PILLS: ");
+        newData[old] = fin.next();
+
+        fin.nextLine();
+        System.out.println("Input the DESCRIPTION: ");
+        newData[newData.length - 1] = fin.nextLine();
+
+        return newData;
+    }
 }

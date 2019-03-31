@@ -9,6 +9,8 @@ import java.util.Scanner;
 public interface Manageable {
     String path = "src/com/pao/project/files/";
 
+    String toString();
+
     String[] dataToStore();
 
     default void exportData(FileWriter fout) throws IOException {
@@ -20,11 +22,14 @@ public interface Manageable {
         fout.write("\n");
     }
 
+    String getName();
     int getClassMask();
+
     default String[] importData (Scanner fin) throws IOException { return new String[0];}
     void incrementalSetter (String[] data);
     void nonIncrementalSetter(String[] data);
-    String toString();
+
+    String[] inputData(Scanner fin);
 
 }
 

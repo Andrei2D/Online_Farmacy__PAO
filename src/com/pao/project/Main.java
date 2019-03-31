@@ -4,19 +4,35 @@ import com.pao.project.actors.User;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.manager.Mask;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import com.pao.project.products.types.Pills;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
 
     static Scanner cin;
-    static Manager users = new Manager();
+    static Manager user = new Manager();
+    static Manager pills = new Manager();
+
+    static private int type = 0;
+
+    static int whatType() {
+        if(type == 0) return Mask.User.getMask();
+        else return Mask.Pills.getMask();
+    }
+
+    static Manager whatManager() {
+        if(type == 0) return user;
+        else return pills;
+    }
+
+    static String whatOption() {
+        if(type == 0) return "Users";
+        else return "Pills";
+    }
 
     public static void main(String[] args) throws IOException {
         cin = new Scanner(System.in);
@@ -24,10 +40,20 @@ public class Main {
         readTest();
     }
 
+    static void chooseType() {
+        System.out.println("\tChoose type: ");
+        System.out.println("1. User");
+        System.out.println("2. Pills");
+
+        type = cin.nextInt() - 1;
+    }
 
     static void readTest() throws
             InputMismatchException, IOException{
+
+
         int option = -1;
+        doStuff(option);
 
         while(option != 0) {
             outputs();
@@ -38,88 +64,88 @@ public class Main {
 
     /** THE MENU OPTIONS*/
     static void outputs() {
-        System.out.println("***");
-        System.out.println("1. Create account");
-        System.out.println("2. Show users");
-        System.out.println("3. Show infos about users");
-        System.out.println("4. Impoer data");
+        System.out.println("*** " + whatOption() + " ***");
+        System.out.println("1. Create object");
+        System.out.println("2. Show manager");
+        System.out.println("3. Show infos about manager");
+        System.out.println("4. Import data");
         System.out.println("5. Export data");
         System.out.println("0. Exit");
         System.out.println("***");
     }
 
     /** 1. Create new user */
-    static void createUser () throws IOException{
+    static void createObject (Manager manager) throws IOException{
         System.out.println("###");
 
-        System.out.println("Input the USERNAME and the PASSWORD:\n");
-        users.inputData(cin, Mask.User.getMask());
-        String userCreated = ((User)users.get(-1)).getUsername();
+        System.out.println("Input necesary data:\n");
+        manager.inputData(cin, whatType());
+        String userCreated = manager.get(-1).getName();
         System.out.println("User " + userCreated + " was created !" );
 
         System.out.println("###");
     }
 
-    /** 2. Show users */
-    static void showUsers() {
-        if(users.size() == 0) {
-            System.out.println("# No users created yet #");
+    /** 2. Show manager */
+    static void showmanager(Manager manager) {
+        if(manager.size() == 0) {
+            System.out.println("# Manager is empty #");
             return;
         }
 
         System.out.println("##");
 
-        System.out.println("\t Infos of users created: ");
+        System.out.println("\t Infos of the object created: ");
 
-        for (int i = 0; i < users.size(); i++) {
-            User currUser = (User) users.get(i);
-                System.out.println("\t\t" + currUser.getUsername());
+        for (int i = 0; i < manager.size(); i++) {
+            Manageable currElm = manager.get(i);
+                System.out.println("\t\t" + currElm.getName());
         }
         System.out.println("##");
     }
 
-    /** 3. Show infos about users*/
-    static void showUsersByReference () {
-        if(users.size() == 0) {
-            System.out.println("# No users created yet #");
+    /** 3. Show infos about object*/
+    static void showmanagerByReference (Manager manager) {
+        if(manager.size() == 0) {
+            System.out.println("# Manager is empty #");
             return;
         }
 
         System.out.println("##");
 
-        System.out.println("\t Users created so far: ");
-        for (int i = 0; i < users.size(); i++) {
-            User usr = (User) users.get(i);
-            System.out.println("\t\t" + usr);
+        System.out.println("\t Objects created so far: ");
+        for (int i = 0; i < manager.size(); i++) {
+            Manageable object = manager.get(i);
+            System.out.println(i+1 +")\n" + object.toString() + "\n");
         }
 
         System.out.println("##");
     }
 
-    /** 4. Import users */
-    static void importUsers() {
+    /** 4. Import manager */
+    static void importmanager(Manager manager) {
         System.out.print("Input a filename: ");
         String file = cin.next();
         try {
-            users.loadData(file);
+            manager.loadData(file);
         } catch (FileNotFoundException e) {
             System.out.println("Umm.. the file does not exist");
             e.printStackTrace();
         } catch (IOException e) {
             System.out.println("Incomplete data");
         }
-        if(users.size() != 0)
+        if(manager.size() != 0)
             System.out.println("Import successful !");
 
     }
 
-    /** 5. Export users*/
-    static void exportUsers() {
+    /** 5. Export manager*/
+    static void exportmanager(Manager manager) {
         System.out.println("Input a filename: ");
         String file = cin.next();
         boolean done = false;
         try {
-            done = users.saveData(file);
+            done = manager.saveData(file);
         }
         catch (IOException e) {
             System.out.println("EXPORT FAILED: File already exists");
@@ -136,27 +162,31 @@ public class Main {
 
     }
 
+
+
     static void doStuff (int opt) throws IOException {
         switch (opt) {
+            case -1:
+                chooseType();
+                break;
             case 1 :
-
-                createUser();
+                createObject(whatManager());
                 break;
 
             case 2:
-                showUsers();
+                showmanager(whatManager());
                 break;
 
             case 3 :
-                showUsersByReference();
+                showmanagerByReference(whatManager());
                 break;
 
             case 4:
-                importUsers();
+                importmanager(whatManager());
                 break;
 
             case 5:
-                exportUsers();
+                exportmanager(whatManager());
                 break;
 
             case 0:

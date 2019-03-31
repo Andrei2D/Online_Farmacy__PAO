@@ -28,6 +28,7 @@ public abstract class Product implements Manageable {
         return 4;
     }
 
+    public String getName() { return name; }
 
     public float getPrice() {
         return price;
@@ -84,6 +85,8 @@ public abstract class Product implements Manageable {
         this.name = data[1];
         this.price = Float.parseFloat(data[2]);
         this.receip_mask = Integer.parseInt(data[3]);
+        this.description = data[data.length - 1];
+
         iDentity.setNameForID(this.name, this.uniqID);
     }
 
@@ -95,6 +98,7 @@ public abstract class Product implements Manageable {
         this.name = data[1];
         this.price = Float.parseFloat(data[2]);
         this.receip_mask = Integer.parseInt(data[3]);
+        this.description = data[data.length - 1];
 
         iDentity.nonIncrementalIndexing(this, this.uniqID);
         iDentity.setNameForID(this.name, this.uniqID);
@@ -109,5 +113,19 @@ public abstract class Product implements Manageable {
         bigString += "Receip: " + Integer.toBinaryString( receip_mask ) + "\n";
 
         return bigString;
+    }
+
+    @Override
+    public String[] inputData(Scanner fin) {
+        String[] data = new String[nrOfData()];
+
+        System.out.print("Input the NAME:  ");
+        data[1] = fin.next();
+        System.out.print("Input the PRICE: ");
+        data[2] = fin.next();
+        System.out.print("Input the RECEIP: ");
+        data[3] = fin.next();
+
+        return data;
     }
 }
