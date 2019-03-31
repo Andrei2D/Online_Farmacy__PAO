@@ -80,9 +80,9 @@ public class UserService {
     /** THE MENU OPTIONS*/
     void outputs() {
         System.out.println("*** " + whatOption() + " ***");
-        System.out.println("1. Create object");
-        System.out.println("2. Show manager");
-        System.out.println("3. Show infos about manager");
+        System.out.println("1. Create new object");
+        System.out.println("2. Show objects created");
+        System.out.println("3. Show infos about objects");
         System.out.println("4. Import data");
         System.out.println("5. Export data");
         System.out.println("6. Switch type");
