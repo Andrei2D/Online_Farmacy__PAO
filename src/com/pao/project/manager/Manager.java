@@ -56,7 +56,7 @@ public class Manager {
             toLoad.nonIncrementalSetter(data);
 
             itemsList.add(toLoad);
-            System.out.println("\tImported: " + toString());
+            System.out.println("\tImported: " + toLoad.getName());
         }
         System.out.println("B4 read size: " + size());
         fin.close();
