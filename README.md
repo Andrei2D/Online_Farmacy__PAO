@@ -21,11 +21,11 @@ Actions to do:
 </tr>
 
 <tr>
-<th><img src="Media/create_object_user.PNG" width="450" height="450"></th>
-<th><img src="Media/objects_created.PNG" width="450" height="450"></th>
-<th><img src="Media/object_infos.PNG" width="450" height="450"></th>
-<th><img src="Media/import_objects.PNG" width="450" height="450"></th>
-<th><img src="Media/export_objects.PNG" width="450" height="450"></th>
+<th><img src="Media/create_object_user.PNG" width="150" height="150"></th>
+<th><img src="Media/objects_created.PNG" width="150" height="150"></th>
+<th><img src="Media/object_infos.PNG" width="150" height="150"></th>
+<th><img src="Media/import_objects.PNG" width="150" height="150"></th>
+<th><img src="Media/export_objects.PNG" width="150" height="150"></th>
 </tr>
 
 </table>
