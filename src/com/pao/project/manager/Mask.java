@@ -7,8 +7,8 @@ public enum Mask {
     Product     (0b0000000100000000),       //0.1.0.0
     Pills       (0b0000001000000000),       //0.2.0.0
     Ointment    (0b0000001100000000),       //0.3.0.0
-    Naturistic  (0b0000010000000000),       //0.4.0.0
-    Supliment   (0b000001010000000);        //0.5.0.0
+    Naturist    (0b0000010000000000),       //0.4.0.0
+    Supplement  (0b0000010100000000);        //0.5.0.0
 
     private final int mask;
 

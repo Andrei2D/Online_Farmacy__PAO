@@ -6,7 +6,7 @@ import com.pao.project.manager.Mask;
 public class Client extends User {
 
     static {
-        identity = new IDentity(Mask.Client.getMask());
+        iDentity = new IDentity(Mask.Client.getMask());
     }
 
     /// Commands hystory

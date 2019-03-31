@@ -1,6 +1,10 @@
 package com.pao.project.manager;
 
 import com.pao.project.actors.*;
+import com.pao.project.products.types.Naturist;
+import com.pao.project.products.types.Ointment;
+import com.pao.project.products.types.Pills;
+import com.pao.project.products.types.Supplement;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -98,20 +102,17 @@ public class Manager {
         else if (Mask.Client.getMask() == mask) {
             return new Client();
         }
-        else if (Mask.Product.getMask() == mask) {
-
-        }
         else if (Mask.Pills.getMask() == mask) {
-
+            return new Pills();
         }
         else if (Mask.Ointment.getMask() == mask) {
-
+            return new Ointment();
         }
-        else if (Mask.Naturistic.getMask() == mask) {
-
+        else if (Mask.Naturist.getMask() == mask) {
+            return new Naturist();
         }
-        else if (Mask.Supliment.getMask() == mask) {
-
+        else if (Mask.Supplement.getMask() == mask) {
+            return new Supplement();
         }
 
         return null;

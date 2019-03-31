@@ -21,8 +21,10 @@ public interface Manageable {
     }
 
     int getClassMask();
-    String[] importData (Scanner fin) throws IOException;
+    default String[] importData (Scanner fin) throws IOException { return new String[0];}
     void incrementalSetter (String[] data);
     void nonIncrementalSetter(String[] data);
+    String toString();
 
 }
+

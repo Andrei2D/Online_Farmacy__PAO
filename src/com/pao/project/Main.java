@@ -42,10 +42,8 @@ public class Main {
         System.out.println("1. Create account");
         System.out.println("2. Show users");
         System.out.println("3. Show infos about users");
-        System.out.println("4. Show users with the ID_ref");
-        System.out.println("5. Remove user");
-        System.out.println("6. Export data");
-        System.out.println("7. Import data");
+        System.out.println("4. Impoer data");
+        System.out.println("5. Export data");
         System.out.println("0. Exit");
         System.out.println("***");
     }

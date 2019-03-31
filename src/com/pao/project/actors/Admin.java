@@ -6,7 +6,7 @@ import com.pao.project.manager.Mask;
 public class Admin extends User{
 
     static {
-        identity = new IDentity(Mask.Admin.getMask());
+        iDentity = new IDentity(Mask.Admin.getMask());
     }
     ///
 

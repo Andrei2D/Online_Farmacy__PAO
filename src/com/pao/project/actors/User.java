@@ -8,10 +8,10 @@ import com.pao.project.manager.*;
 
 public class User implements Manageable {
     //protected in later versions...
-    public static IDentity identity;
+    static IDentity iDentity;
 
     static {
-        identity = new IDentity(Mask.User.getMask());
+        iDentity = new IDentity(Mask.User.getMask());
     }
 
 
@@ -23,14 +23,15 @@ public class User implements Manageable {
         username = password = "";
     }
 
-    public User(String username, String password) {
+    //DELETE-ABLE
+    protected User(String username, String password) {
 
 
         this.username = username;
         this.password = password;
 
-        uniqID = identity.incrementalIndexing(this);
-        identity.setNameForID(this.username, this.uniqID);
+        uniqID = iDentity.incrementalIndexing(this);
+        iDentity.setNameForID(this.username, this.uniqID);
     }
 
     public String getUsername() {
@@ -85,10 +86,10 @@ public class User implements Manageable {
 
     @Override
     public void incrementalSetter(String[] data) {
-        this.uniqID = identity.incrementalIndexing(this);
+        this.uniqID = iDentity.incrementalIndexing(this);
         this.username = data[1];
         this.password = data[2];
-        identity.setNameForID(this.username, this.uniqID);
+        iDentity.setNameForID(this.username, this.uniqID);
     }
 
     @Override
@@ -96,8 +97,8 @@ public class User implements Manageable {
         this.uniqID = Integer.parseInt(data[0]);
         this.username = data[1];
         this.password = data[2];
-        identity.nonIncrementalIndexing(this, this.uniqID);
-        identity.setNameForID(this.username, this.uniqID);
+        iDentity.nonIncrementalIndexing(this, this.uniqID);
+        iDentity.setNameForID(this.username, this.uniqID);
     }
 
     @Override
