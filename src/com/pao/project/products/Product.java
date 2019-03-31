@@ -84,6 +84,7 @@ public abstract class Product implements Manageable {
         this.name = data[1];
         this.price = Float.parseFloat(data[2]);
         this.receip_mask = Integer.parseInt(data[3]);
+        iDentity.setNameForID(this.name, this.uniqID);
     }
 
     @Override
@@ -94,6 +95,9 @@ public abstract class Product implements Manageable {
         this.name = data[1];
         this.price = Float.parseFloat(data[2]);
         this.receip_mask = Integer.parseInt(data[3]);
+
+        iDentity.nonIncrementalIndexing(this, this.uniqID);
+        iDentity.setNameForID(this.name, this.uniqID);
     }
 
     @Override
