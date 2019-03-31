@@ -46,19 +46,15 @@ public class Manager {
         System.out.println("Class mask: " + class_mask);
 
         itemsList = new ArrayList<>();
-        System.out.println("B4 read size: " + size());
 
         for(int index = 0; index < nr_of_elements; index++) {
             Manageable toLoad = newElementByMask(class_mask);
             String[] data = toLoad.importData(fin);
-            if(data == null)
-                System.out.println("\t#NULL DATA, WTF!#");
             toLoad.nonIncrementalSetter(data);
 
             itemsList.add(toLoad);
             System.out.println("\tImported: " + toLoad.getName());
         }
-        System.out.println("B4 read size: " + size());
         fin.close();
 
     }

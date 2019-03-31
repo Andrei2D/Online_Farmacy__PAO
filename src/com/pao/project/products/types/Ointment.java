@@ -55,19 +55,22 @@ public class Ointment extends Product {
 
     @Override
     public String[] importData(Scanner fin) throws IOException {
-        String[] data = importSuperData(fin);
+        String[] data = super.importData(fin);
         int old = super.nrOfData();
+        int areas = fin.nextInt();
+        String[] newData = new String[old + areas + 1 + 1];
+        if (old >= 0) System.arraycopy(data, 0, newData, 0, old);
 
-        data[old] = fin.next();
-        int to_read = Integer.parseInt(data[old]);
 
-        for (int index = 0; index < to_read; index++) {
-            data[old + index + 1] = fin.next();
+        newData[old] = String.valueOf(areas);
+
+        for (int index = 0; index < areas; index++) {
+            newData[old + index + 1] = fin.next();
         }
 
-        data[data.length - 1] = fin.nextLine();
+        newData[newData.length - 1] = fin.nextLine();
 
-        return data;
+        return newData;
     }
 
     @Override
@@ -93,4 +96,50 @@ public class Ointment extends Product {
         super.nonIncrementalSetter(data);
         fillTheRest(data);
     }
+
+    @Override
+    public String[] inputData(Scanner fin) {
+        String[] oldData = super.inputData(fin);
+        System.out.print("Input the NR OF \n\tAREAS OF APPLICATION:  ");
+        int areas = fin.nextInt();
+
+
+        String[] newData = new String[super.nrOfData() + areas + 1 + 1];
+        int old = super.nrOfData();
+        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
+
+        newData[old] = String.valueOf(areas);
+
+        System.out.println("Input the " + newData[old] + " areas  of application:   ");
+        for (int index = 0; index < Integer.parseInt(newData[old]); index++) {
+            System.out.print(index + 1 + ". ");
+            newData[old + index + 1] = fin.next();
+        }
+
+        fin.nextLine();
+
+        System.out.println("Input the description: ");
+        newData[newData.length - 1] = fin.nextLine();
+
+        return newData;
+    }
+
+    @Override
+    public String toString() {
+        String bigString = "Type: Ointment\n";
+        bigString += super.toString();
+
+        if(application_areas.length > 0) {
+            bigString += "Areas of application:\n";
+            for (int index = 0; index < application_areas.length; index++) {
+                bigString += "\t" + (index + 1) + ". " + application_areas[index] + "\n";
+            }
+        }
+
+        bigString += "Description:\n\t" + this.description + "\n";
+
+        return bigString;
+    }
+
+
 }

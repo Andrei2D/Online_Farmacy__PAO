@@ -87,6 +87,7 @@ public class Pills extends Product {
     public String toString() {
         String bigString = "Type: Pills\n";
         bigString += super.toString();
+        bigString += "Nr of pills: " + this.number_of_pills + "\n";
         bigString += "Description:\n\t" + this.description + "\n";
 
         return bigString;
