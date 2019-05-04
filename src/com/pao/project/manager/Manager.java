@@ -69,7 +69,7 @@ public class Manager implements ProductCodes{
         fin.close();
 
     }
-
+  
         // Function which exports the contains of the Manager instance
     public boolean saveData (String fileName) throws IOException {
         File file = new File(Manageable.path + fileName);

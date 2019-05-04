@@ -77,7 +77,6 @@ public class Supplement extends Product {
             newData[old + index + 1] = fin.nextLine();
         }
 
-
         System.out.println("Input the description: ");
         newData[newData.length - 1] = fin.nextLine();
 

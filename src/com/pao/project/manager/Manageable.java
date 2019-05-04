@@ -16,6 +16,18 @@ public interface Manageable extends ProductCodes {
     /*  This generates an array with all the fields that the class
      wants to have written into the file according to */
     String[] dataToStore();
+    void setData(String[] data);
+
+    String getName();
+    int getClassMask();
+
+    default String removeCommas (String toRemove){
+        return toRemove.replace(",","''");
+    }
+
+    default String revertCommas (String toRevert) {
+        return toRevert.replace("''", ",");
+    }
 
         //  Function needed to store string array resulted from
         // imported data
@@ -58,7 +70,6 @@ public interface Manageable extends ProductCodes {
             importedData.add(elmToStore);
         }
         elmScan.close();
-
         String[] outputData = new String[importedData.size()];
         importedData.toArray(outputData);
         return outputData;
@@ -75,5 +86,3 @@ public interface Manageable extends ProductCodes {
 
  Everything is comma separated
  */
-
-

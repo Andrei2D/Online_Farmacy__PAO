@@ -38,7 +38,6 @@ public class Ointment extends Product {
     public int getClassMask() {
         return OINTMENT;
     }
-
     @Override
     public void fillTheRest(String[] data) {
         int old = super.nrOfData();
