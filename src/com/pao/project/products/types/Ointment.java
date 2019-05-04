@@ -1,10 +1,8 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.Mask;
 import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Ointment extends Product {
@@ -40,37 +38,6 @@ public class Ointment extends Product {
     public int getClassMask() {
         return OINTMENT;
     }
-
-//    private String[] importSuperData(Scanner fin) throws IOException {
-//
-//        String[] oldData = super.importData(fin);
-//        String[] newData = new String[nrOfData()];
-//        int old = super.nrOfData();
-//        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
-//
-//        return newData;
-//    }
-//
-//    @Override
-//    public String[] importData(Scanner fin) throws IOException {
-//        String[] data = super.importData(fin);
-//        int old = super.nrOfData();
-//        int areas = fin.nextInt();
-//        String[] newData = new String[old + areas + 1 + 1];
-//        if (old >= 0) System.arraycopy(data, 0, newData, 0, old);
-//
-//
-//        newData[old] = String.valueOf(areas);
-//
-//        for (int index = 0; index < areas; index++) {
-//            newData[old + index + 1] = fin.next();
-//        }
-//
-//        newData[newData.length - 1] = fin.nextLine();
-//
-//        return newData;
-//    }
-
     @Override
     public void fillTheRest(String[] data) {
         int old = super.nrOfData();
@@ -81,13 +48,6 @@ public class Ointment extends Product {
 
         super.fillTheRest(data);
     }
-
-//    @Override
-//    public void incrementalSetter(String[] data) {
-//        super.incrementalSetter(data);
-//        fillTheRest(data);
-//
-//    }
 
     @Override
     public void setData(String[] data) {
@@ -100,7 +60,7 @@ public class Ointment extends Product {
         String[] oldData = super.inputData(fin);
         System.out.print("Input the NR OF \n\tAREAS OF APPLICATION:  ");
         int areas = fin.nextInt();
-
+        fin.nextLine();
 
         String[] newData = new String[super.nrOfData() + areas + 1 + 1];
         int old = super.nrOfData();
@@ -111,10 +71,9 @@ public class Ointment extends Product {
         System.out.println("Input the " + newData[old] + " areas  of application:   ");
         for (int index = 0; index < Integer.parseInt(newData[old]); index++) {
             System.out.print(index + 1 + ". ");
-            newData[old + index + 1] = fin.next();
+            newData[old + index + 1] = fin.nextLine();
         }
 
-        fin.nextLine();
 
         System.out.println("Input the description: ");
         newData[newData.length - 1] = fin.nextLine();

@@ -1,10 +1,8 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.Mask;
 import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Naturist extends Product {
@@ -42,33 +40,6 @@ public class Naturist extends Product {
     @Override
     public int getClassMask() { return NATURIST; }
 
-//    private String[] importSuperData(Scanner fin) throws IOException {
-//
-//        String[] oldData = super.importData(fin);
-//        String[] newData = new String[nrOfData()];
-//        int old = super.nrOfData();
-//        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
-//
-//        return newData;
-//    }
-//
-//    @Override
-//    public String[] importData(Scanner fin) throws IOException {
-//        String[] data = importSuperData(fin);
-//        int old = super.nrOfData();
-//
-//        data[old] = fin.next();
-//        int to_read = Integer.parseInt(data[old]);
-//
-//        for (int index = 0; index < to_read; index++) {
-//            data[old + index + 1] = fin.next();
-//        }
-//
-//        data[data.length - 1] = fin.nextLine();
-//
-//        return data;
-//    }
-
     @Override
     public void fillTheRest(String[] data) {
         int old = super.nrOfData();
@@ -91,7 +62,7 @@ public class Naturist extends Product {
         String[] oldData = super.inputData(fin);
         System.out.print("Input the NR OF \n\tNATURAT INGREDIENTS:  ");
         int nat_ingr = fin.nextInt();
-
+        fin.nextLine();
 
         String[] newData = new String[super.nrOfData() + nat_ingr + 1 + 1];
         int old = super.nrOfData();
@@ -100,12 +71,11 @@ public class Naturist extends Product {
         newData[old] = String.valueOf(nat_ingr);
 
         System.out.println("Input the " + newData[old] + " natural ingredients:   ");
-        for (int index = 0; index < Integer.parseInt(newData[old]); index++) {
+        for (int index = 0; index < nat_ingr; index++) {
             System.out.print(index + 1 + ". ");
-            newData[old + index + 1] = fin.next();
+            newData[old + index + 1] = fin.nextLine();
         }
 
-        fin.nextLine();
 
         System.out.println("Input the description: ");
         newData[newData.length - 1] = fin.nextLine();

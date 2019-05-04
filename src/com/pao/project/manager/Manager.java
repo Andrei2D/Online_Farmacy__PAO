@@ -1,10 +1,7 @@
 package com.pao.project.manager;
 
 import com.pao.project.actors.*;
-import com.pao.project.products.types.Naturist;
-import com.pao.project.products.types.Ointment;
-import com.pao.project.products.types.Pills;
-import com.pao.project.products.types.Supplement;
+import com.pao.project.products.types.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,8 +31,8 @@ public class Manager implements ProductCodes{
     }
 
 
-    /** Method to be called on startup
-     */
+    /** Method that will be called on startup but for now it has an
+     * option in the menu*/
     public void loadData (String importFile) throws
             FileNotFoundException, IOException {
             //  Read how many items are int the file and
@@ -72,7 +69,8 @@ public class Manager implements ProductCodes{
         fin.close();
 
     }
-        // It should overwrite existing file
+  
+        // Function which exports the contains of the Manager instance
     public boolean saveData (String fileName) throws IOException {
         File file = new File(Manageable.path + fileName);
 

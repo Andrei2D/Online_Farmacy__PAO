@@ -1,10 +1,7 @@
 package com.pao.project.products;
 
 import com.pao.project.manager.Manageable;
-import com.pao.project.manager.Mask;
-import com.pao.project.manager.ProductCodes;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Product implements Manageable {
@@ -74,49 +71,9 @@ public abstract class Product implements Manageable {
         return PRODUCT;
     }
 
-    /**The function reads
-     */
-//    @Override
-//    public String[] importData(Scanner fin) throws IOException {
-//        String[] data = new String[nrOfData()];
-//        if(fin.hasNext("\\w+"))
-//            data[0] = String.valueOf(fin.nextInt());
-//        data[1] = fin.next();
-//        data[2] = String.valueOf(fin.nextDouble());
-//        data[3] = String.valueOf(fin.nextInt());
-//
-//        return data;
-//    }
-
     public void fillTheRest(String[] data) {
         this.description = data[data.length -1];
     }
-
-    /*
-    @Override
-    public void incrementalSetter(String[] data) {
-        uniqID = iDentity.incrementalIndexing(this);
-        this.name = data[1];
-        this.price = Double.parseDouble(data[2]);
-        this.receip_mask = Integer.parseInt(data[3]);
-        this.description = data[data.length - 1];
-
-        iDentity.setNameForID(this.name, this.uniqID);
-    }
-
-    @Override
-    public void setData(String[] data) {
-        this.uniqID = Integer.parseInt(data[0]);
-        iDentity.nonIncrementalIndexing(this, this.uniqID);
-
-        this.name = data[1];
-        this.price = Double.parseDouble(data[2]);
-        this.receip_mask = Integer.parseInt(data[3]);
-        this.description = data[data.length - 1];
-
-        iDentity.nonIncrementalIndexing(this, this.uniqID);
-        iDentity.setNameForID(this.name, this.uniqID);
-    }*/
 
     public void setData(String[] data) {
         this.uniqID = Integer.parseInt(data[0]);
