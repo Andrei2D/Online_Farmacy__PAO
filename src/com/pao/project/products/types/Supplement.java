@@ -1,16 +1,16 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.IDentity;
 import com.pao.project.manager.Mask;
+import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Supplement extends Product {
-    static {
-        iDentity = new IDentity(Mask.Supplement.getMask());
-    }
+
+    public static final int MASK = ProductCodes.SUPPLEMENTS;
+
     private String[] vitains = new String[0];
 
     @Override
@@ -82,15 +82,8 @@ public class Supplement extends Product {
     }
 
     @Override
-    public void incrementalSetter(String[] data) {
-        super.incrementalSetter(data);
-        fillTheRest(data);
-
-    }
-
-    @Override
-    public void nonIncrementalSetter(String[] data) {
-        super.nonIncrementalSetter(data);
+    public void setData(String[] data) {
+        super.setData(data);
         fillTheRest(data);
     }
 }

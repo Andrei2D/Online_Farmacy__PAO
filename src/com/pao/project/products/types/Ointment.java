@@ -1,16 +1,14 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.IDentity;
 import com.pao.project.manager.Mask;
+import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Ointment extends Product {
-    static {
-        iDentity = new IDentity(Mask.Ointment.getMask());
-    }
+    public static final int MASK = ProductCodes.OINTMENT;
     private String[] application_areas = new String[0];
 
     @Override
@@ -84,16 +82,16 @@ public class Ointment extends Product {
         super.fillTheRest(data);
     }
 
-    @Override
-    public void incrementalSetter(String[] data) {
-        super.incrementalSetter(data);
-        fillTheRest(data);
+//    @Override
+//    public void incrementalSetter(String[] data) {
+//        super.incrementalSetter(data);
+//        fillTheRest(data);
+//
+//    }
 
-    }
-
     @Override
-    public void nonIncrementalSetter(String[] data) {
-        super.nonIncrementalSetter(data);
+    public void setData(String[] data) {
+        super.setData(data);
         fillTheRest(data);
     }
 

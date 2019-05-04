@@ -1,21 +1,20 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.IDentity;
 import com.pao.project.manager.Mask;
+import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Naturist extends Product {
-    static {
-        iDentity = new IDentity(Mask.Naturist.getMask());
-    }
+
+    static final int MASK = ProductCodes.NATURIST;
     private String[] natural_ingredients = new String[0];
 
     @Override
     protected int nrOfData() {
-        /** Fields superclass passed (minus description),
+        /* Fields superclass passed (minus description),
          number of natural ingredients,
          natural ingredients,
          description
@@ -82,15 +81,8 @@ public class Naturist extends Product {
     }
 
     @Override
-    public void incrementalSetter(String[] data) {
-        super.incrementalSetter(data);
-        fillTheRest(data);
-
-    }
-
-    @Override
-    public void nonIncrementalSetter(String[] data) {
-        super.nonIncrementalSetter(data);
+    public void setData(String[] data) {
+        super.setData(data);
         fillTheRest(data);
     }
 }
