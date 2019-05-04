@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static com.pao.project.manager.Manageable.csv_delimiter;
+import static com.pao.project.manager.Manageable.csv_separator;
 
 public class Manager implements ProductCodes{
     private ArrayList<Manageable> itemsList;
@@ -41,23 +42,25 @@ public class Manager implements ProductCodes{
             // what's the class who's data are being written
         int nr_of_elements, class_mask;
         Scanner fin = new Scanner(new File(Manageable.path + importFile));
-        fin.useDelimiter(csv_delimiter + "|\n");
+        fin.useDelimiter(csv_delimiter);
 
         nr_of_elements = fin.nextInt();
         class_mask = fin.nextInt();
+        fin.nextLine();
 
         System.out.println("Nr of elem: " + nr_of_elements);
-        System.out.println("Class mask: " + String.format("0x%08X", class_mask));
+        System.out.println("Class mask: " + String.format("0x%02X", class_mask));
 
             // Elements are being read with each line
         fin.useDelimiter("\n");
         itemsList = new ArrayList<>();
 
         for(int index = 0; index < nr_of_elements; index++) {
+            String line = fin.nextLine();
                 // Create a new element
             Manageable toLoad = newElementByMask(class_mask);
                 // Read all it's data from the file
-            String[] data = toLoad.importData(fin);
+            String[] data = toLoad.importData(line);
                 // Be sure data was red
             if (null == data) continue;
                 // Fill the fields with the data red
@@ -77,7 +80,7 @@ public class Manager implements ProductCodes{
         if(file.exists() && !itemsList.isEmpty() && !file.createNewFile())
             return false;
         FileWriter fout = new FileWriter(file);
-        fout.write(itemsList.size() + csv_delimiter);
+        fout.write(itemsList.size() + csv_separator);
         fout.write(itemsList.get(0).getClassMask() + "\n");
 
         System.out.println("# EXPORT #");

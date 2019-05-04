@@ -140,8 +140,9 @@ public abstract class Product implements Manageable {
     public String[] inputData(Scanner fin) {
         String[] data = new String[nrOfData()];
         data[0] = String.valueOf(getID());
+        fin.nextLine();
         System.out.print("Input the NAME:  ");
-        data[1] = fin.next();
+        data[1] = fin.nextLine();
         System.out.print("Input the PRICE: ");
         data[2] = fin.next();
         System.out.print("Input the RECEIP: ");

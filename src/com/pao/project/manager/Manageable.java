@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 public interface Manageable extends ProductCodes {
     String path = "res/csv/";
-    String csv_delimiter = ", ";
+    String csv_delimiter = ", |\n";
+    String csv_separator = ", ";
 
     String toString();
 
@@ -32,27 +33,28 @@ public interface Manageable extends ProductCodes {
         String[] data = dataToStore();
         for (int index = 0; index < data.length; index++) {
             if(0 != index)
-                fout.write(csv_delimiter);
+                fout.write(csv_separator);
             String dataToWrite = removeCommas(data[index]);
             fout.write(dataToWrite);
         }
         fout.write("\n");
     }
 
-    default String[] importData (Scanner fin) throws IOException {
+    default String[] importData (String line) throws IOException {
         LinkedList<String> importedData = new LinkedList<>();
-        String line = fin.nextLine();
 
-        Scanner scanner = new Scanner(line);
-        scanner.useDelimiter(csv_delimiter);
-
-        while(scanner.hasNext()) {
-            String redElement = scanner.next();
-            importedData.add(revertCommas(redElement));
+        Scanner elmScan = new Scanner(line);
+        elmScan.useDelimiter(csv_delimiter);
+        while(elmScan.hasNext()) {
+            String redElement = elmScan.next();
+            String elmToStore = revertCommas(redElement);
+            importedData.add(elmToStore);
         }
-        scanner.close();
+        elmScan.close();
 
-        return (String[]) importedData.toArray();
+        String[] outputData = new String[importedData.size()];
+        importedData.toArray(outputData);
+        return outputData;
     }
 
     default String[] inputData(Scanner fin) {return new String[0];}

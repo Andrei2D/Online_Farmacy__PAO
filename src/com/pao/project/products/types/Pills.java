@@ -42,25 +42,25 @@ public class Pills extends Product {
         return PILLS;
     }
 
-    private String[] importSuperData(Scanner fin) throws IOException {
-
-        String[] oldData = super.importData(fin);
-        String[] newData = new String[nrOfData()];
-        int old = super.nrOfData();
-        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
-
-        return newData;
-    }
-
-    @Override
-    public String[] importData(Scanner fin) throws IOException {
-        String[] data = importSuperData(fin);
-        int old = super.nrOfData();
-        data[old] = fin.next();
-        data[old + 1] = fin.nextLine();
-
-        return data;
-    }
+//    private String[] importSuperData(Scanner fin) throws IOException {
+//
+//        String[] oldData = super.importData(fin);
+//        String[] newData = new String[nrOfData()];
+//        int old = super.nrOfData();
+//        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
+//
+//        return newData;
+//    }
+//
+//    @Override
+//    public String[] importData(Scanner fin) throws IOException {
+//        String[] data = importSuperData(fin);
+//        int old = super.nrOfData();
+//        data[old] = fin.next();
+//        data[old + 1] = fin.nextLine();
+//
+//        return data;
+//    }
 
     public void fillTheRest (String[] data) {
 

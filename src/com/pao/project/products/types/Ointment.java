@@ -41,35 +41,35 @@ public class Ointment extends Product {
         return OINTMENT;
     }
 
-    private String[] importSuperData(Scanner fin) throws IOException {
-
-        String[] oldData = super.importData(fin);
-        String[] newData = new String[nrOfData()];
-        int old = super.nrOfData();
-        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
-
-        return newData;
-    }
-
-    @Override
-    public String[] importData(Scanner fin) throws IOException {
-        String[] data = super.importData(fin);
-        int old = super.nrOfData();
-        int areas = fin.nextInt();
-        String[] newData = new String[old + areas + 1 + 1];
-        if (old >= 0) System.arraycopy(data, 0, newData, 0, old);
-
-
-        newData[old] = String.valueOf(areas);
-
-        for (int index = 0; index < areas; index++) {
-            newData[old + index + 1] = fin.next();
-        }
-
-        newData[newData.length - 1] = fin.nextLine();
-
-        return newData;
-    }
+//    private String[] importSuperData(Scanner fin) throws IOException {
+//
+//        String[] oldData = super.importData(fin);
+//        String[] newData = new String[nrOfData()];
+//        int old = super.nrOfData();
+//        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
+//
+//        return newData;
+//    }
+//
+//    @Override
+//    public String[] importData(Scanner fin) throws IOException {
+//        String[] data = super.importData(fin);
+//        int old = super.nrOfData();
+//        int areas = fin.nextInt();
+//        String[] newData = new String[old + areas + 1 + 1];
+//        if (old >= 0) System.arraycopy(data, 0, newData, 0, old);
+//
+//
+//        newData[old] = String.valueOf(areas);
+//
+//        for (int index = 0; index < areas; index++) {
+//            newData[old + index + 1] = fin.next();
+//        }
+//
+//        newData[newData.length - 1] = fin.nextLine();
+//
+//        return newData;
+//    }
 
     @Override
     public void fillTheRest(String[] data) {
