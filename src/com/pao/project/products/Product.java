@@ -10,7 +10,6 @@ import java.util.Scanner;
 public abstract class Product implements Manageable {
 
     static private int IDReference = 1;
-    public static final int MASK = ProductCodes.PRODUCT;
 
     private int uniqID;
     private String name;
@@ -72,7 +71,7 @@ public abstract class Product implements Manageable {
 
     @Override
     public int getClassMask() {
-        return MASK;
+        return PRODUCT;
     }
 
     /**The function reads

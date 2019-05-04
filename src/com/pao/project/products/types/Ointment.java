@@ -38,7 +38,7 @@ public class Ointment extends Product {
 
     @Override
     public int getClassMask() {
-        return Mask.Ointment.getMask();
+        return OINTMENT;
     }
 
     private String[] importSuperData(Scanner fin) throws IOException {
@@ -124,19 +124,19 @@ public class Ointment extends Product {
 
     @Override
     public String toString() {
-        String bigString = "Type: Ointment\n";
-        bigString += super.toString();
+        StringBuilder bigString = new StringBuilder("Type: Ointment\n");
+        bigString.append(super.toString());
 
         if(application_areas.length > 0) {
-            bigString += "Areas of application:\n";
+            bigString.append("Areas of application:\n");
             for (int index = 0; index < application_areas.length; index++) {
-                bigString += "\t" + (index + 1) + ". " + application_areas[index] + "\n";
+                bigString.append("\t").append(index + 1).append(". ").append(application_areas[index]).append("\n");
             }
         }
 
-        bigString += "Description:\n\t" + this.description + "\n";
+        bigString.append("Description:\n\t").append(this.description).append("\n");
 
-        return bigString;
+        return bigString.toString();
     }
 
 

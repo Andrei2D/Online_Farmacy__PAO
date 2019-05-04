@@ -4,13 +4,15 @@ import com.pao.project.actors.User;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.manager.Mask;
+import com.pao.project.manager.ProductCodes;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserService {
+
+public class UserService implements ProductCodes {
 
     Scanner cin = new Scanner(System.in);
     Manager user = new Manager();
@@ -22,12 +24,12 @@ public class UserService {
     int whatType() {
         switch (type){
             case 0:
-                return Mask.User.getMask();
+                return USER;
             case 1:
-                return Mask.Pills.getMask();
+                return PILLS;
 
             default:
-                return  Mask.Ointment.getMask();
+                return  OINTMENT;
         }
     }
 

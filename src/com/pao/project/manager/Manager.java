@@ -92,7 +92,8 @@ public class Manager implements ProductCodes{
 
     public Manageable inputData(Scanner cin, int classMask) throws IOException{
         Manageable item = newElementByMask(classMask);
-        // TODO: METHOD OF MANAGEABLE TO READ DATA
+        String[] itemData = item.inputData(cin);
+        item.setData(itemData);
         itemsList.add(item);
         return item;
     }

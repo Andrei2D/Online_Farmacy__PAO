@@ -39,7 +39,7 @@ public class Pills extends Product {
 
     @Override
     public int getClassMask() {
-        return Mask.Pills.getMask();
+        return PILLS;
     }
 
     private String[] importSuperData(Scanner fin) throws IOException {

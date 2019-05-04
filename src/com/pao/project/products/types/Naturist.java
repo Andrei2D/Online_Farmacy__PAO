@@ -40,7 +40,7 @@ public class Naturist extends Product {
     }
 
     @Override
-    public int getClassMask() { return Mask.Naturist.getMask(); }
+    public int getClassMask() { return NATURIST; }
 
     private String[] importSuperData(Scanner fin) throws IOException {
 

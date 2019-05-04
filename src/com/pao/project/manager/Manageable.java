@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public interface Manageable {
-    String path = "res/csv";
+public interface Manageable extends ProductCodes {
+    String path = "res/csv/";
     String csv_delimiter = ", ";
 
     String toString();

@@ -5,11 +5,6 @@ import com.pao.project.manager.Mask;
 
 public class Admin extends User{
 
-    static {
-        iDentity = new IDentity(Mask.Admin.getMask());
-    }
-    ///
-
     public Admin () {
         super();
     }

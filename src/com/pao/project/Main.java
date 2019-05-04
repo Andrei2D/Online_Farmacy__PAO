@@ -1,6 +1,7 @@
 package com.pao.project;
 
 
+import com.pao.project.products.types.Pills;
 import com.pao.project.services.UserService;
 
 import java.io.IOException;

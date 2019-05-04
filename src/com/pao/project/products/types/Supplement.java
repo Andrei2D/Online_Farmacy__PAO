@@ -41,7 +41,7 @@ public class Supplement extends Product {
     }
 
     @Override
-    public int getClassMask() { return Mask.Naturist.getMask(); }
+    public int getClassMask() { return SUPPLEMENTS; }
 
     private String[] importSuperData(Scanner fin) throws IOException {
 
