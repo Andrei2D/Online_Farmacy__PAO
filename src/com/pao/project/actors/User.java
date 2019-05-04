@@ -8,11 +8,8 @@ import com.pao.project.manager.*;
 
 public class User implements Manageable {
     //protected in later versions...
-    static IDentity iDentity;
+    static protected int IDReference = 1;
 
-    static {
-        iDentity = new IDentity(Mask.User.getMask());
-    }
 
 
     protected Integer uniqID;
@@ -25,13 +22,17 @@ public class User implements Manageable {
 
     //DELETE-ABLE
     protected User(String username, String password) {
-
-
+        uniqID = getID();
         this.username = username;
         this.password = password;
+    }
 
-        uniqID = iDentity.incrementalIndexing(this);
-        iDentity.setNameForID(this.username, this.uniqID);
+    protected static int getID() {
+        return IDReference++;
+    }
+
+    protected static void updateIDRef(int anID) {
+        IDReference = Integer.max(anID + 1, IDReference);
     }
 
     public String getUsername() {
@@ -58,7 +59,6 @@ public class User implements Manageable {
 
         new User(username, password);
 
-
         return username;
     }
 
@@ -72,43 +72,24 @@ public class User implements Manageable {
     }
 
     @Override
+    public void setData(String[] data) {
+        uniqID   = Integer.parseInt(data[0]);
+        username = data[1];
+        password = data[2];
+
+        updateIDRef(uniqID);
+    }
+
+    @Override
     public String getName() {
         return getUsername();
     }
 
-    @Override
-    public String[] importData(Scanner fin) throws IOException {
-        String[] data = new String[3];
 
-        if(fin.hasNext("(\\d+)"))
-                data[0] = String.valueOf(fin.nextInt());
-        data[1] = fin.next();
-        data[2] = fin.next();
-        fin.nextLine();
-
-        return data;
-    }
-
-    @Override
-    public void incrementalSetter(String[] data) {
-        this.uniqID = iDentity.incrementalIndexing(this);
-        this.username = data[1];
-        this.password = data[2];
-        iDentity.setNameForID(this.username, this.uniqID);
-    }
-
-    @Override
-    public void nonIncrementalSetter(String[] data) {
-        this.uniqID = Integer.parseInt(data[0]);
-        this.username = data[1];
-        this.password = data[2];
-        iDentity.nonIncrementalIndexing(this, this.uniqID);
-        iDentity.setNameForID(this.username, this.uniqID);
-    }
 
     @Override
     public int getClassMask() {
-        return Mask.User.getMask();
+        return USER;
 
     }
 
@@ -116,6 +97,7 @@ public class User implements Manageable {
     public String[] inputData(Scanner fin) {
         String[] data = new String[3];
 
+        data[0] = String.valueOf(getID());
         System.out.println("Input username: ");
         data[1] = fin.next();
         System.out.println("Input password: ");

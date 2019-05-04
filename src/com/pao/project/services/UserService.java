@@ -4,30 +4,40 @@ import com.pao.project.actors.User;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.manager.Mask;
+import com.pao.project.manager.ProductCodes;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class UserService {
+
+public class UserService implements ProductCodes {
 
     Scanner cin = new Scanner(System.in);
     Manager user = new Manager();
     Manager pills = new Manager();
-    Manager ointment = new Manager();
+    Manager ointments = new Manager();
+    Manager naturists = new Manager();
+    Manager supplements = new Manager();
 
     private int type = 0;
 
     int whatType() {
         switch (type){
             case 0:
-                return Mask.User.getMask();
+                return USER;
             case 1:
-                return Mask.Pills.getMask();
+                return PILLS;
+            case 2:
+                return OINTMENT;
+            case 3:
+                return NATURIST;
+            case 4:
+                return SUPPLEMENTS;
 
             default:
-                return  Mask.Ointment.getMask();
+                return 0;
         }
     }
 
@@ -38,8 +48,14 @@ public class UserService {
                 return user;
             case 1:
                 return pills;
+            case 2:
+                return ointments;
+            case 3:
+                return naturists;
+            case 4:
+                return supplements;
             default:
-                return ointment;
+                return null;
         }
     }
 
@@ -49,16 +65,24 @@ public class UserService {
                 return "Users";
             case 1:
                 return "Pills";
+            case 2:
+                return "Ointments";
+            case 3:
+                return "Naturists";
+            case 4:
+                return "Supplements";
             default:
-                return "Ointment";
+                return "Error";
         }
     }
 
     void chooseType() {
         System.out.println("\tChoose type: ");
-        System.out.println("1. User");
+        System.out.println("1. Users");
         System.out.println("2. Pills");
-        System.out.println("3. Ointment");
+        System.out.println("3. Ointments");
+        System.out.println("4. Naturists");
+        System.out.println("5. Supplements");
 
         type = cin.nextInt() - 1;
     }
@@ -97,12 +121,12 @@ public class UserService {
         System.out.println("Input necesary data:\n");
         manager.inputData(cin, whatType());
         String userCreated = manager.get(-1).getName();
-        System.out.println("User " + userCreated + " was created !" );
+        System.out.println("Element " + userCreated + " was created !" );
 
         System.out.println("###");
     }
 
-    /** 2. Show manager */
+    /** 2. Output names in manager */
     void showmanager(Manager manager) {
         if(manager.size() == 0) {
             System.out.println("# Manager is empty #");
