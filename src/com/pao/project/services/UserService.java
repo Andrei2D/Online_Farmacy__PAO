@@ -1,9 +1,7 @@
 package com.pao.project.services;
 
-import com.pao.project.actors.User;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
-import com.pao.project.manager.Mask;
 import com.pao.project.manager.ProductCodes;
 
 import java.io.FileNotFoundException;

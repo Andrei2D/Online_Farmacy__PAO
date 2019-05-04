@@ -1,10 +1,8 @@
 package com.pao.project.products.types;
 
-import com.pao.project.manager.Mask;
 import com.pao.project.manager.ProductCodes;
 import com.pao.project.products.Product;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Pills extends Product {
@@ -41,26 +39,6 @@ public class Pills extends Product {
     public int getClassMask() {
         return PILLS;
     }
-
-//    private String[] importSuperData(Scanner fin) throws IOException {
-//
-//        String[] oldData = super.importData(fin);
-//        String[] newData = new String[nrOfData()];
-//        int old = super.nrOfData();
-//        if (old >= 0) System.arraycopy(oldData, 0, newData, 0, old);
-//
-//        return newData;
-//    }
-//
-//    @Override
-//    public String[] importData(Scanner fin) throws IOException {
-//        String[] data = importSuperData(fin);
-//        int old = super.nrOfData();
-//        data[old] = fin.next();
-//        data[old + 1] = fin.nextLine();
-//
-//        return data;
-//    }
 
     public void fillTheRest (String[] data) {
 

@@ -7,10 +7,8 @@ import com.pao.project.manager.*;
 
 
 public class User implements Manageable {
-    //protected in later versions...
+
     static protected int IDReference = 1;
-
-
 
     protected Integer uniqID;
     protected String username;
