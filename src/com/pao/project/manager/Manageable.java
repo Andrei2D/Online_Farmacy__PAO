@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public interface Manageable extends ProductCodes {
     String path = "res/csv/";
-    String csv_delimiter = ", |\n";
+    String csv_delimiter = ", |\n|\r\n";
     String csv_separator = ", ";
 
     String toString();
