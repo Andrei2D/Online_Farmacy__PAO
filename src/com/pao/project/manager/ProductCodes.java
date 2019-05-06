@@ -10,4 +10,6 @@ public interface ProductCodes {
      int SUPPLEMENTS= 0xA2;
      int NATURIST   = 0xA3;
      int OINTMENT   = 0xA4;
+     int STERILE    = 0xA5;
+     int TEA        = 0xA6;
 }

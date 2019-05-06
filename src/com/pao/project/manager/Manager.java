@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.RecursiveTask;
+
 import static com.pao.project.manager.Manageable.csv_delimiter;
 import static com.pao.project.manager.Manageable.csv_separator;
 
@@ -69,7 +71,7 @@ public class Manager implements ProductCodes{
         fin.close();
 
     }
-  
+
         // Function which exports the contains of the Manager instance
     public boolean saveData (String fileName) throws IOException {
         File file = new File(Manageable.path + fileName);
@@ -99,7 +101,7 @@ public class Manager implements ProductCodes{
         return item;
     }
 
-    private Manageable newElementByMask (int mask) {
+    static public Manageable newElementByMask (int mask) {
 
         switch (mask) {
             case USER:
@@ -116,6 +118,8 @@ public class Manager implements ProductCodes{
                 return new Naturist();
             case SUPPLEMENTS:
                 return new Supplement();
+            case STERILE:
+                return new Sterile();
             default:
                 return null;
         }

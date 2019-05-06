@@ -55,7 +55,7 @@ public class Pills extends Product {
 
     @Override
     public String toString() {
-        String bigString = "Type: Pills\n";
+        String bigString = "Type: Tea\n";
         bigString += super.toString();
         bigString += "Nr of pills: " + this.number_of_pills + "\n";
         bigString += "Description:\n\t" + this.description + "\n";

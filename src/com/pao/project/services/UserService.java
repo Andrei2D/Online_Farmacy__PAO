@@ -6,20 +6,28 @@ import com.pao.project.manager.ProductCodes;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
 public class UserService implements ProductCodes {
 
-    Scanner cin = new Scanner(System.in);
-    Manager user = new Manager();
-    Manager pills = new Manager();
-    Manager ointments = new Manager();
-    Manager naturists = new Manager();
-    Manager supplements = new Manager();
 
+    static final int NR_OF_CLASSES = 7;
     private int type = 0;
+    private Scanner cin;
+    private ArrayList<Manager> managers;
+
+
+
+    public UserService() {
+        cin = new Scanner(System.in);
+        managers = new ArrayList<>();
+        for (int ind = 0; ind < NR_OF_CLASSES; ind++) {
+            managers.add(new Manager());
+        }
+    }
 
     int whatType() {
         switch (type){
@@ -33,7 +41,10 @@ public class UserService implements ProductCodes {
                 return NATURIST;
             case 4:
                 return SUPPLEMENTS;
-
+            case 5:
+                return STERILE;
+            case 6:
+                return TEA;
             default:
                 return 0;
         }
@@ -41,20 +52,7 @@ public class UserService implements ProductCodes {
 
     Manager whatManager() {
 
-        switch (type) {
-            case 0:
-                return user;
-            case 1:
-                return pills;
-            case 2:
-                return ointments;
-            case 3:
-                return naturists;
-            case 4:
-                return supplements;
-            default:
-                return null;
-        }
+        return managers.get(type);
     }
 
     String whatOption() {
@@ -69,6 +67,10 @@ public class UserService implements ProductCodes {
                 return "Naturists";
             case 4:
                 return "Supplements";
+            case 5:
+                return "Sterile";
+            case 6:
+                return "Tea";
             default:
                 return "Error";
         }
@@ -76,11 +78,9 @@ public class UserService implements ProductCodes {
 
     void chooseType() {
         System.out.println("\tChoose type: ");
-        System.out.println("1. Users");
-        System.out.println("2. Pills");
-        System.out.println("3. Ointments");
-        System.out.println("4. Naturists");
-        System.out.println("5. Supplements");
+        for (type = 0; type < NR_OF_CLASSES; type++) {
+            System.out.println((type + 1) + ". " + whatOption());
+        }
 
         type = cin.nextInt() - 1;
     }

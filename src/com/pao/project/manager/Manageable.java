@@ -29,7 +29,7 @@ public interface Manageable extends ProductCodes {
         return toRevert.replace("''", ",");
     }
 
-        // This
+        // Thisthe sterile step
     default void exportData(FileWriter fout) throws IOException {
         String[] data = dataToStore();
         for (int index = 0; index < data.length; index++) {
