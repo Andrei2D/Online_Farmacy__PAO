@@ -65,7 +65,7 @@ public class Tea extends Product {
     public String[] inputData(Scanner fin) {
         String[] data = super.inputData(fin);
         int superIndex = super.nrOfData();
-        
+
         int type = 0;
         while(true) {
             System.out.println("Choose the type of the tea: + " +
@@ -86,6 +86,8 @@ public class Tea extends Product {
             amount = fin.nextDouble();
         }
         data[superIndex + 1] = String.valueOf(amount);
+
+        fin.nextLine();
 
         System.out.println("Input the description:");
         data[superIndex + 2] = fin.nextLine();

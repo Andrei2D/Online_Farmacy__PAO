@@ -12,4 +12,6 @@ public interface ProductCodes {
      int OINTMENT   = 0xA4;
      int STERILE    = 0xA5;
      int TEA        = 0xA6;
+     int SYRUP      = 0xA7;
+     int EQUIPMENT  = 0xA8;
 }

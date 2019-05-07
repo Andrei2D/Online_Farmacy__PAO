@@ -3,6 +3,7 @@ package com.pao.project.services;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.manager.ProductCodes;
+import com.pao.project.products.types.Equipment;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class UserService implements ProductCodes {
 
 
-    static final int NR_OF_CLASSES = 7;
+    private static final int NR_OF_CLASSES = 9;
     private int type = 0;
     private Scanner cin;
     private ArrayList<Manager> managers;
@@ -27,62 +28,6 @@ public class UserService implements ProductCodes {
         for (int ind = 0; ind < NR_OF_CLASSES; ind++) {
             managers.add(new Manager());
         }
-    }
-
-    int whatType() {
-        switch (type){
-            case 0:
-                return USER;
-            case 1:
-                return PILLS;
-            case 2:
-                return OINTMENT;
-            case 3:
-                return NATURIST;
-            case 4:
-                return SUPPLEMENTS;
-            case 5:
-                return STERILE;
-            case 6:
-                return TEA;
-            default:
-                return 0;
-        }
-    }
-
-    Manager whatManager() {
-
-        return managers.get(type);
-    }
-
-    String whatOption() {
-        switch (type) {
-            case 0:
-                return "Users";
-            case 1:
-                return "Pills";
-            case 2:
-                return "Ointments";
-            case 3:
-                return "Naturists";
-            case 4:
-                return "Supplements";
-            case 5:
-                return "Sterile";
-            case 6:
-                return "Tea";
-            default:
-                return "Error";
-        }
-    }
-
-    void chooseType() {
-        System.out.println("\tChoose type: ");
-        for (type = 0; type < NR_OF_CLASSES; type++) {
-            System.out.println((type + 1) + ". " + whatOption());
-        }
-
-        type = cin.nextInt() - 1;
     }
 
     public void readTest() throws
@@ -99,8 +44,72 @@ public class UserService implements ProductCodes {
         }
     }
 
+    private int whatType() {
+        switch (type){
+            case 0:
+                return USER;
+            case 1:
+                return PILLS;
+            case 2:
+                return OINTMENT;
+            case 3:
+                return NATURIST;
+            case 4:
+                return SUPPLEMENTS;
+            case 5:
+                return STERILE;
+            case 6:
+                return TEA;
+            case 7:
+                return SYRUP;
+            case 8:
+                return EQUIPMENT;
+            default:
+                return 0;
+        }
+    }
+
+    private Manager whatManager() {
+
+        return managers.get(type);
+    }
+
+    private String whatOption() {
+        switch (type) {
+            case 0:
+                return "Users";
+            case 1:
+                return "Pills";
+            case 2:
+                return "Ointments";
+            case 3:
+                return "Naturists";
+            case 4:
+                return "Supplements";
+            case 5:
+                return "Sterile";
+            case 6:
+                return "Teas";
+            case 7:
+                return "Syrups";
+            case 8:
+                return "Equipments";
+            default:
+                return "Error";
+        }
+    }
+
+    void chooseType() {
+        System.out.println("\tChoose type: ");
+        for (type = 0; type < NR_OF_CLASSES; type++) {
+            System.out.println((type + 1) + ". " + whatOption());
+        }
+
+        type = cin.nextInt() - 1;
+    }
+
     /** THE MENU OPTIONS*/
-    void outputs() {
+    private void outputs() {
         System.out.println("*** " + whatOption() + " ***");
         System.out.println("1. Create new object");
         System.out.println("2. Show objects created");
@@ -113,7 +122,7 @@ public class UserService implements ProductCodes {
     }
 
     /** 1. Create new user */
-    void createObject (Manager manager) throws IOException{
+    private void createObject(Manager manager) throws IOException{
         System.out.println("###");
 
         System.out.println("Input necesary data:\n");
@@ -125,7 +134,7 @@ public class UserService implements ProductCodes {
     }
 
     /** 2. Output names in manager */
-    void showmanager(Manager manager) {
+    private void showmanager(Manager manager) {
         if(manager.size() == 0) {
             System.out.println("# Manager is empty #");
             return;
@@ -143,7 +152,7 @@ public class UserService implements ProductCodes {
     }
 
     /** 3. Show infos about object*/
-    void showmanagerByReference (Manager manager) {
+    private void showmanagerByReference(Manager manager) {
         if(manager.size() == 0) {
             System.out.println("# Manager is empty #");
             return;
@@ -161,7 +170,7 @@ public class UserService implements ProductCodes {
     }
 
     /** 4. Import manager */
-    void importmanager(Manager manager) {
+    private void importmanager(Manager manager) {
         System.out.print("Input a filename: ");
         String file = cin.next();
         try {
@@ -178,7 +187,7 @@ public class UserService implements ProductCodes {
     }
 
     /** 5. Export manager*/
-    void exportmanager(Manager manager) {
+    private void exportmanager(Manager manager) {
         System.out.println("Input a filename: ");
         String file = cin.next();
         boolean done = false;
@@ -202,7 +211,7 @@ public class UserService implements ProductCodes {
 
 
 
-    void doStuff (int opt) throws IOException {
+    private void doStuff(int opt) throws IOException {
         switch (opt) {
             case -1:
                 chooseType();

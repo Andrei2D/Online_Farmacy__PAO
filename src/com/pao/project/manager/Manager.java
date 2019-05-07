@@ -32,6 +32,13 @@ public class Manager implements ProductCodes{
         return itemsList.get(index);
     }
 
+    public String remove(int index) {
+        if(index >= itemsList.size())
+            return "";
+        String nameOfRemoved = itemsList.get(index).getName();
+        itemsList.remove(index);
+        return nameOfRemoved;
+    }
 
     /** Method that will be called on startup but for now it has an
      * option in the menu*/
@@ -44,7 +51,7 @@ public class Manager implements ProductCodes{
         fin.useDelimiter(csv_delimiter);
 
         nr_of_elements = fin.nextInt();
-        class_mask = fin.nextInt();
+        class_mask = fin.nextInt(16);
         fin.nextLine();
 
         System.out.println("Nr of elem: " + nr_of_elements);
@@ -81,7 +88,7 @@ public class Manager implements ProductCodes{
             return false;
         FileWriter fout = new FileWriter(file);
         fout.write(itemsList.size() + csv_separator);
-        fout.write(itemsList.get(0).getClassMask() + "\n");
+        fout.write(String.format("%02X", itemsList.get(0).getClassMask()) + "\n");
 
         System.out.println("# EXPORT #");
 
@@ -101,7 +108,7 @@ public class Manager implements ProductCodes{
         return item;
     }
 
-    static public Manageable newElementByMask (int mask) {
+    static private Manageable newElementByMask (int mask) {
 
         switch (mask) {
             case USER:
@@ -120,6 +127,12 @@ public class Manager implements ProductCodes{
                 return new Supplement();
             case STERILE:
                 return new Sterile();
+            case TEA:
+                return new Tea();
+            case SYRUP:
+                return new Syrup();
+            case EQUIPMENT:
+                return new Equipment();
             default:
                 return null;
         }

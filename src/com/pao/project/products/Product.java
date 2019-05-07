@@ -23,11 +23,19 @@ public abstract class Product implements Manageable {
         return 4;
     }
 
-    protected static int getID() {
+    private static int getID() {
         return IDReference++;
     }
 
-    protected static void updateIDRef(int anID) {
+    private static int getID(int anotherID) {
+        if(anotherID >= IDReference) {
+            updateIDRef(anotherID);
+            return anotherID;
+        } else
+            return getID();
+    }
+
+    private static void updateIDRef(int anID) {
         IDReference = Integer.max(anID + 1, IDReference);
     }
 
@@ -76,7 +84,8 @@ public abstract class Product implements Manageable {
     }
 
     public void setData(String[] data) {
-        this.uniqID = Integer.parseInt(data[0]);
+        int parsedID = Integer.parseInt(data[0]);
+        this.uniqID = getID(parsedID);
         this.name = data[1];
         this.price = Double.parseDouble(data[2]);
         this.receip_mask = Integer.parseInt(data[3]);
@@ -101,7 +110,7 @@ public abstract class Product implements Manageable {
         System.out.print("Input the NAME:  ");
         data[1] = fin.nextLine();
         System.out.print("Input the PRICE: ");
-        data[2] = fin.next();
+        data[2] = fin.nextLine();
         System.out.print("Input the RECEIP: ");
         data[3] = fin.next();
 
