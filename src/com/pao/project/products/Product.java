@@ -16,11 +16,15 @@ public abstract class Product implements Manageable {
 
     /** This function returns the amount of data each class is passing
      * trough the String vector from one generation to the other
-     *  The Product class writes 4 fields:
-     *  *
+     *  The Product class writes 3 fields:
+     *      name
+     *      price
+     *      receip_mask
+     * It does't write the ID
+     *
      * */
     protected int nrOfData () {
-        return 4;
+        return 3;
     }
 
     private static int getID() {
@@ -84,11 +88,11 @@ public abstract class Product implements Manageable {
     }
 
     public void setData(String[] data) {
-        int parsedID = Integer.parseInt(data[0]);
-        this.uniqID = getID(parsedID);
-        this.name = data[1];
-        this.price = Double.parseDouble(data[2]);
-        this.receip_mask = Integer.parseInt(data[3]);
+
+        this.uniqID = getID();
+        this.name = data[0];
+        this.price = Double.parseDouble(data[1]);
+        this.receip_mask = Integer.parseInt(data[2]);
     }
 
     @Override
@@ -105,14 +109,14 @@ public abstract class Product implements Manageable {
     @Override
     public String[] inputData(Scanner fin) {
         String[] data = new String[nrOfData()];
-        data[0] = String.valueOf(getID());
-        fin.nextLine();
+//        data[0] = String.valueOf(getID());
+//        fin.nextLine();
         System.out.print("Input the NAME:  ");
-        data[1] = fin.nextLine();
+        data[0] = fin.nextLine();
         System.out.print("Input the PRICE: ");
-        data[2] = fin.nextLine();
+        data[1] = fin.nextLine();
         System.out.print("Input the RECEIP: ");
-        data[3] = fin.next();
+        data[2] = fin.next();
 
         return data;
     }

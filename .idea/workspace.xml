@@ -3,15 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="b6d34ec6-be96-4901-964f-cf3049a92c06" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/choose_oint.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/choose_pills.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/choose_user.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/create_object_user.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/export_objects.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/import_objects.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/object_infos.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Media/objects_created.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/csv/naturists.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/csv/naturists.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/csv/pills.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/csv/pills.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/csv/supplements.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/csv/supplements.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/csv/tea.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/csv/tea.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/csv/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/res/csv/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/pao/project/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/pao/project/manager/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/manager/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/pao/project/manager/ProductCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/manager/ProductCodes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/pao/project/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/products/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/pao/project/products/types/Tea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/products/types/Tea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/pao/project/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/pao/project/services/UserService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -27,18 +33,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/pao/project/services/UserService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2592">
-              <caret line="31" selection-start-line="31" selection-end-line="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Equipment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
+            <state relative-caret-position="474">
               <caret line="65" column="65" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -47,14 +44,106 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/csv/naturists.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/csv/supplements.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/csv/pills.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="54">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/csv/tea.csv">
+          <provider selected="true" editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+              <column index="0" width="100" />
+              <column index="1" width="100" />
+              <column index="2" width="100" />
+              <column index="3" width="100" />
+              <column index="4" width="100" />
+              <column index="5" width="100" />
+            </state>
+          </provider>
+          <provider editor-type-id="csv-text-editor">
+            <state relative-caret-position="108">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/csv/users.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+              <column index="0" width="100" />
+              <column index="1" width="100" />
+              <column index="2" width="100" />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="72">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Syrup.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
+            <state relative-caret-position="1890">
+              <caret line="112" selection-start-line="112" selection-end-line="112" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/Product.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1872">
+              <caret line="118" column="14" selection-start-line="118" selection-start-column="14" selection-end-line="118" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="486">
+                <caret line="27" column="189" selection-start-line="27" selection-start-column="189" selection-end-line="27" selection-end-column="189" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -76,9 +165,14 @@
       <find>newElement</find>
       <find>arr</find>
       <find>arra</find>
+      <find>&lt;/th&gt;\n&lt;th&gt;</find>
+      <find>&quot;</find>
     </findStrings>
     <replaceStrings>
       <replace>S</replace>
+      <replace>\|</replace>
+      <replace>![](</replace>
+      <replace>)</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -93,18 +187,20 @@
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Pills.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Ointment.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Sterile.java" />
-        <option value="$PROJECT_DIR$/res/csv/pills.csv" />
-        <option value="$PROJECT_DIR$/res/csv/naturists.csv" />
-        <option value="$PROJECT_DIR$/res/csv/supplements.csv" />
-        <option value="$PROJECT_DIR$/res/csv/users.csv" />
         <option value="$PROJECT_DIR$/src/com/pao/project/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/pao/project/products/Product.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/manager/ProductCodes.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Tea.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/manager/Manager.java" />
-        <option value="$PROJECT_DIR$/src/com/pao/project/services/UserService.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Equipment.java" />
         <option value="$PROJECT_DIR$/src/com/pao/project/products/types/Syrup.java" />
+        <option value="$PROJECT_DIR$/src/com/pao/project/services/UserService.java" />
+        <option value="$PROJECT_DIR$/res/csv/naturists.csv" />
+        <option value="$PROJECT_DIR$/src/com/pao/project/products/Product.java" />
+        <option value="$PROJECT_DIR$/res/csv/supplements.csv" />
+        <option value="$PROJECT_DIR$/res/csv/pills.csv" />
+        <option value="$PROJECT_DIR$/res/csv/tea.csv" />
+        <option value="$PROJECT_DIR$/res/csv/users.csv" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -127,7 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -185,6 +280,17 @@
             <path>
               <item name="Online_Farmacy__PAO" type="b2602c69:ProjectViewProjectNode" />
               <item name="Online_Farmacy__PAO" type="462c0819:PsiDirectoryNode" />
+              <item name="Media" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Online_Farmacy__PAO" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Online_Farmacy__PAO" type="462c0819:PsiDirectoryNode" />
+              <item name="Media" type="462c0819:PsiDirectoryNode" />
+              <item name="v1.2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Online_Farmacy__PAO" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Online_Farmacy__PAO" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -198,6 +304,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,8 +367,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1920" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945945" visible="true" weight="0.12126068" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945945" visible="true" weight="0.122329056" />
       <window_info id="Structure" order="1" sideWeight="0.50054055" side_tool="true" weight="0.25641027" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -372,60 +480,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/csv/naturists.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/csv/users.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pao/project/manager/Manageable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="298">
           <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/csv/pills.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="3" lean-forward="true" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/csv/supplements.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="5" selection-start-column="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/csv/tea.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state>
-          <caret column="5" lean-forward="true" selection-start-column="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -471,19 +529,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/Product.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="65" column="20" selection-start-line="65" selection-start-column="20" selection-end-line="65" selection-end-column="20" />
-          <folding>
-            <element signature="e#1058#1059#0" expanded="true" />
-            <element signature="e#1164#1165#0" expanded="true" />
-            <element signature="e#1979#1980#0" expanded="true" />
-            <element signature="e#2080#2081#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Tea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
@@ -503,14 +548,95 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pao/project/services/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2592">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        <state relative-caret-position="684">
+          <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/res/csv/naturists.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/csv/supplements.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/csv/pills.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/csv/tea.csv">
+      <provider selected="true" editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+          <column index="3" width="100" />
+          <column index="4" width="100" />
+          <column index="5" width="100" />
+        </state>
+      </provider>
+      <provider editor-type-id="csv-text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/csv/users.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3">
+          <column index="0" width="100" />
+          <column index="1" width="100" />
+          <column index="2" width="100" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Syrup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1890">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1872">
+          <caret line="118" column="14" selection-start-line="118" selection-start-column="14" selection-end-line="118" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Media/v1.2/choose_type.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Equipment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
+        <state relative-caret-position="474">
           <caret line="65" column="65" selection-start-line="65" selection-start-column="65" selection-end-line="65" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -518,13 +644,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/pao/project/products/types/Syrup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="80" column="44" lean-forward="true" selection-start-line="80" selection-start-column="44" selection-end-line="80" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="486">
+            <caret line="27" column="189" selection-start-line="27" selection-start-column="189" selection-end-line="27" selection-end-column="189" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

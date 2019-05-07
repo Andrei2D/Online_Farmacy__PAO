@@ -39,7 +39,13 @@ public class UserService implements ProductCodes {
 
         while(option != 0) {
             outputs();
+                // Why this approach?
+            // Because might be fields that read a whole line but
+            //  the file pointer will be just behind the end of the line
+            // That resulting in reading an empty string
+            //  instead of a line that might be find after
             option = cin.nextInt();
+            cin.nextLine();
             doStuff(option);
         }
     }
