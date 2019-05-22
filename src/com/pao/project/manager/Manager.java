@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.concurrent.RecursiveTask;
 
@@ -15,6 +16,7 @@ import static com.pao.project.manager.Manageable.csv_delimiter;
 import static com.pao.project.manager.Manageable.csv_separator;
 
 public class Manager implements ProductCodes{
+    public static HashMap<String, Manageable> elmByName = new HashMap<>();
     private ArrayList<Manageable> itemsList;
     public Manager () {
         itemsList = new ArrayList<>();
@@ -40,42 +42,71 @@ public class Manager implements ProductCodes{
         return nameOfRemoved;
     }
 
-    /** Method that will be called on startup but for now it has an
-     * option in the menu*/
-    public void loadData (String importFile) throws
-            FileNotFoundException, IOException {
-            //  Read how many items are int the file and
-            // what's the class who's data are being written
-        int nr_of_elements, class_mask;
-        Scanner fin = new Scanner(new File(Manageable.path + importFile));
-        fin.useDelimiter(csv_delimiter);
+    /**
+     *  Function that reads a header containing a number a elements and
+     * a class mask and then the number of elements said in the header
+     * of the class having the class mask
+     *
+     * @param fin Scanner variable who's pointer is right
+     *            before the header
+     */
+    public int importData(Scanner fin) throws
+            IOException {
+        int nr_of_elements, class_mask, succesfully_imported = 0;
+        Scanner headerScanner = new Scanner(fin.nextLine());
+        headerScanner.useDelimiter(csv_delimiter);
 
-        nr_of_elements = fin.nextInt();
-        class_mask = fin.nextInt(16);
-        fin.nextLine();
+        nr_of_elements = headerScanner.nextInt();
+        class_mask = headerScanner.nextInt(16);
+        
+        headerScanner.close();
 
         System.out.println("Nr of elem: " + nr_of_elements);
         System.out.println("Class mask: " + String.format("0x%02X", class_mask));
 
-            // Elements are being read with each line
-        fin.useDelimiter("\n");
-        itemsList = new ArrayList<>();
+        if(nr_of_elements == 0) return  0;
+
+        // Elements are being read with each line
 
         for(int index = 0; index < nr_of_elements; index++) {
             String line = fin.nextLine();
-                // Create a new element
+            // Create a new element
             Manageable toLoad = newElementByMask(class_mask);
-                // Read all it's data from the file
+            // Read all it's data from the file
+            if(toLoad == null) System.out.println("WTF");
             String[] data = toLoad.importData(line);
-                // Be sure data was red
+            // Be sure data was red
             if (null == data) continue;
-                // Fill the fields with the data red
+            if(elmByName.containsKey(data[0])) {
+                System.out.println("Object >" + data[0] + "< attempted to be red again.");
+                continue;
+            }
+
+            // Fill the fields with the data red
             toLoad.setData(data);
-                // Add the item into the manager
+            // Add the item into the manager
             itemsList.add(toLoad);
-            System.out.println("\tImported: " + toLoad.getName());
+            elmByName.put(toLoad.getName(), toLoad);
+            succesfully_imported ++;
+//            System.out.println("\tImported: " + toLoad.getName());
         }
+
+        return succesfully_imported;
+    }
+
+    /** Method that will be called on startup but for now it has an
+     * option in the menu*/
+    public int loadData (String importFile) throws
+            FileNotFoundException, IOException {
+            //  Read how many items are int the file and
+            // what's the class who's data are being written
+        Scanner fin = new Scanner(new File(Manageable.path + importFile));
+
+        int succesful_imports = importData(fin);
+
         fin.close();
+
+        return succesful_imports;
 
     }
 
@@ -100,12 +131,32 @@ public class Manager implements ProductCodes{
         return true;
     }
 
+    public void exportData (FileWriter writer) {
+        if(itemsList.size() == 0) return;
+        try {
+                // Header
+            writer.write(itemsList.size() + csv_separator + itemsList.get(0).getClassMask() + "\n");
+                //Elements
+            for (Manageable element: itemsList
+                 ) {
+                element.exportData(writer);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public Manageable inputData(Scanner cin, int classMask) throws IOException{
         Manageable item = newElementByMask(classMask);
         String[] itemData = item.inputData(cin);
         item.setData(itemData);
         itemsList.add(item);
         return item;
+    }
+
+    public void uniteManager (Manager manager) {
+        if(manager.size() == 0) return;
+        itemsList.addAll(manager.itemsList);
     }
 
     static private Manageable newElementByMask (int mask) {
@@ -137,6 +188,12 @@ public class Manager implements ProductCodes{
                 return null;
         }
 
+    }
+
+    public int clear() {
+        int to_return = itemsList.size();
+        itemsList.clear();
+        return  to_return;
     }
 
 

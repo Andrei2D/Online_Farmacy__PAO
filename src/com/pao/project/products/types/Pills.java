@@ -6,7 +6,6 @@ import com.pao.project.products.Product;
 import java.util.Scanner;
 
 public class Pills extends Product {
-    public static final int MASK = ProductCodes.PILLS;
     private int number_of_pills;
 
 

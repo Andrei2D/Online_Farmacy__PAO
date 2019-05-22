@@ -50,6 +50,7 @@ public interface Manageable extends ProductCodes {
             String redElement = elmScan.next();
             String elmToStore = revertCommas(redElement);
             importedData.add(elmToStore);
+
         }
         elmScan.close();
         String[] outputData = new String[importedData.size()];

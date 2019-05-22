@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 public class Naturist extends Product {
 
-    static final int MASK = ProductCodes.NATURIST;
     private String[] natural_ingredients = new String[0];
 
     @Override

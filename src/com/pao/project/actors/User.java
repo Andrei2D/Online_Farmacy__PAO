@@ -13,16 +13,20 @@ public class User implements Manageable {
     protected Integer uniqID;
     protected String username;
     protected String password;
+    protected String email;
+    protected String telephone;
 
     public User() {
-        username = password = "";
+        this("","","","");
     }
 
     //DELETE-ABLE
-    protected User(String username, String password) {
+    protected User(String username, String password, String email, String telephone) {
         uniqID = getID();
         this.username = username;
         this.password = password;
+        this.email = email;
+        this.telephone = telephone;
     }
 
     protected static int getID() {
@@ -55,25 +59,24 @@ public class User implements Manageable {
         System.out.print("Insert password: ");
         String password = lineScanner.nextLine();
 
-        new User(username, password);
+        new User(username, password,"","");
 
         return username;
     }
 
     @Override
     public String[] dataToStore() {
-        String[] data = new String[3];
-        data[0] = uniqID.toString();
-        data[1] = username;
-        data[2] = password;
+        String[] data = new String[2];
+        data[0] = username;
+        data[1] = password;
         return  data;
     }
 
     @Override
     public void setData(String[] data) {
-        uniqID   = Integer.parseInt(data[0]);
-        username = data[1];
-        password = data[2];
+        uniqID   = getID();
+        username = data[0];
+        password = data[1];
 
         updateIDRef(uniqID);
     }
@@ -95,11 +98,10 @@ public class User implements Manageable {
     public String[] inputData(Scanner fin) {
         String[] data = new String[3];
 
-        data[0] = String.valueOf(getID());
         System.out.println("Input username: ");
-        data[1] = fin.next();
+        data[0] = fin.next();
         System.out.println("Input password: ");
-        data[2] = fin.next();
+        data[1] = fin.next();
 
         return data;
     }

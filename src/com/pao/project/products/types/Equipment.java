@@ -10,7 +10,7 @@ public class Equipment extends Product implements Manageable {
 
     @Override
     protected int nrOfData() {
-        /* ID, name, price, receip -> super
+        /* name, price -> super
          * isElectric,
          * description
          */

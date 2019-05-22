@@ -3,10 +3,12 @@ package com.pao.project.services;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.manager.ProductCodes;
-import com.pao.project.products.types.Equipment;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -16,6 +18,7 @@ public class UserService implements ProductCodes {
 
 
     private static final int NR_OF_CLASSES = 9;
+    private String dataFile = "dataimport.csv";
     private int type = 0;
     private Scanner cin;
     private ArrayList<Manager> managers;
@@ -28,9 +31,11 @@ public class UserService implements ProductCodes {
         for (int ind = 0; ind < NR_OF_CLASSES; ind++) {
             managers.add(new Manager());
         }
+        importData();
     }
 
-    public void readTest() throws
+    public void
+    readTest() throws
             InputMismatchException, IOException{
 
 
@@ -75,6 +80,30 @@ public class UserService implements ProductCodes {
         }
     }
 
+    private Manager whatManager(int classMask) {
+        switch (classMask){
+            case USER:
+                return managers.get(0);
+            case PILLS:
+                return managers.get(1);
+            case OINTMENT:
+                return managers.get(2);
+            case NATURIST:
+                return managers.get(3);
+            case SUPPLEMENTS:
+                return managers.get(4);
+            case STERILE:
+                return managers.get(5);
+            case TEA:
+                return managers.get(6);
+            case SYRUP:
+                return managers.get(7);
+            case EQUIPMENT:
+                return managers.get(8);
+            default: return null;
+        }
+    }
+
     private Manager whatManager() {
 
         return managers.get(type);
@@ -105,24 +134,32 @@ public class UserService implements ProductCodes {
         }
     }
 
-    void chooseType() {
-        System.out.println("\tChoose type: ");
-        for (type = 0; type < NR_OF_CLASSES; type++) {
-            System.out.println((type + 1) + ". " + whatOption());
+    private void chooseType() throws IOException {
+
+        while(true) {
+            System.out.println("\tChoose type: ");
+            for (type = 0; type < NR_OF_CLASSES; type++) {
+                System.out.println((type + 1) + ". " + whatOption());
+            }
+
+            type = cin.nextInt() - 1;
+            cin.nextLine();
+            if (type >= 0 && type < NR_OF_CLASSES) break;
+            else System.out.println(" >INVALID OPTION< ");
         }
 
-        type = cin.nextInt() - 1;
     }
 
     /** THE MENU OPTIONS*/
     private void outputs() {
         System.out.println("*** " + whatOption() + " ***");
         System.out.println("1. Create new object");
-        System.out.println("2. Show objects created");
+        System.out.println("2. Show existing objects");
         System.out.println("3. Show infos about objects");
         System.out.println("4. Import data");
-        System.out.println("5. Export data");
-        System.out.println("6. Switch type");
+        System.out.println("5. Remove element");
+        System.out.println("6. Export data");
+        System.out.println("7. Switch type");
         System.out.println("0. Exit");
         System.out.println("***");
     }
@@ -176,20 +213,61 @@ public class UserService implements ProductCodes {
     }
 
     /** 4. Import manager */
-    private void importmanager(Manager manager) {
+    private void importOneManager(Manager manager) {
         System.out.print("Input a filename: ");
         String file = cin.next();
+        int succesfullyImported = 0;
         try {
-            manager.loadData(file);
+            succesfullyImported = manager.loadData(file);
         } catch (FileNotFoundException e) {
-            System.out.println("Umm.. the file does not exist");
-            e.printStackTrace();
+            System.out.println("That file does not exist in "+Manageable.path);
         } catch (IOException e) {
             System.out.println("Incomplete data");
         }
         if(manager.size() != 0)
-            System.out.println("Import successful !");
+            System.out.println( succesfullyImported + " elements imported successful !");
 
+    }
+
+    /** */
+    private void importData(){
+
+        Manager readingManager = new Manager();
+        int manIndex = 0;
+        try {
+            Scanner scan = new Scanner(new File(Manageable.path + dataFile));
+            while(scan.hasNextLine()) {
+
+                int succRead = readingManager.importData(scan);
+                if(succRead == 0) continue;
+
+                Manager storingManager = whatManager(readingManager.get(0).getClassMask());
+
+
+                readingManager.clear();
+            }
+
+            scan.close();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+            // TODO: LOG > there is no file to import from
+        }
+
+    }
+
+    private void exportData() {
+        try {
+            FileWriter writer = new FileWriter(new File(Manageable.path + dataFile));
+            for (Manager manager :
+                    managers) {
+                manager.exportData(writer);
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /** 5. Export manager*/
@@ -211,7 +289,21 @@ public class UserService implements ProductCodes {
     }
 
     /** To do */
-    void removeUser (){
+    private void removeElement(Manager currManager){
+        int chosenIndex = -1;
+        do {
+            System.out.println("Pick the index of \nthe element you want to remove:");
+
+            for (int index = 0; index < currManager.size(); index++) {
+                System.out.println("\t" + (index + 1) + " " + currManager.get(index).getName());
+            }
+
+            chosenIndex = cin.nextInt() - 1;
+            cin.nextLine();
+
+        } while (chosenIndex < 0 || chosenIndex >= currManager.size());
+        String removed = currManager.remove(chosenIndex);
+        System.out.println("Element + >" + removed + "< was removed.");
 
     }
 
@@ -235,18 +327,22 @@ public class UserService implements ProductCodes {
                 break;
 
             case 4:
-                importmanager(whatManager());
+                importOneManager(whatManager());
                 break;
 
             case 5:
+                removeElement(whatManager());
+                break;
+            case 6:
                 exportmanager(whatManager());
                 break;
 
-            case 6:
+            case 7:
                 chooseType();
                 break;
 
             case 0:
+                exportData();
                 System.out.println("Session ended...");
                 break;
 

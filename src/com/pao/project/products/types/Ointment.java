@@ -6,7 +6,6 @@ import com.pao.project.products.Product;
 import java.util.Scanner;
 
 public class Ointment extends Product {
-    public static final int MASK = ProductCodes.OINTMENT;
     private String[] application_areas = new String[0];
 
     @Override

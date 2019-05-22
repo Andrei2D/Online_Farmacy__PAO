@@ -6,9 +6,6 @@ import com.pao.project.products.Product;
 import java.util.Scanner;
 
 public class Supplement extends Product {
-
-    public static final int MASK = ProductCodes.SUPPLEMENTS;
-
     private String[] vitains = new String[0];
 
     @Override

@@ -12,7 +12,7 @@ public class Sterile  extends Product implements Manageable {
 
     @Override
     protected int nrOfData() {
-        /*  ID, Name, Price, Receip, -> super
+        /*  Fields superclass passed (minus description),
          *  width, height,
          *  nrOfPieces,
          *  description
