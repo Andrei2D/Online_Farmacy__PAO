@@ -181,6 +181,9 @@ public class ChatWindow extends JFrame{
             ));
             receiveMessageMode();
             isActive = false;
+            JOptionPane.showMessageDialog(this,
+                    "Session ended by " + who);
+            dispose();
         }
 
         Message mess = new Message(who, what, isMe);
