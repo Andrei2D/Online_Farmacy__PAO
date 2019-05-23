@@ -1,16 +1,16 @@
 package com.pao.project;
 
 
+import com.pao.project.actors.User;
 import com.pao.project.gui.createacc.CreateAccount;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
+import com.pao.project.products.types.Naturist;
 import com.pao.project.services.UserService;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -20,7 +20,55 @@ public class Main {
 
     static UserService uServ;
     public static void main(String[] args)  {
-        CreateAccount account = new CreateAccount();
+
+    }
+
+    static void serialWriteTesting() {
+        String[] data = {"Sampon de salvie", "27.59", "4", "Radacina de salvie", "Ulei de ricin", "Frunza de patlagina",
+                "Miere de salcam", "Sampon dedicat parului sensibil si subtire"};
+
+        Naturist naturii = new Naturist();
+        naturii.setData(data);
+
+        try {
+            String filePath = "/home/andrei/Facooltate/a_file.txt";
+
+            FileOutputStream file = new FileOutputStream(filePath);
+            ObjectOutputStream stream = new ObjectOutputStream(file);
+
+            stream.writeObject(naturii);
+
+            stream.close();
+            file.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void serialReadTesting() {
+        Naturist natur = new Naturist();
+
+        String filePath = "/home/andrei/Facooltate/a_file.txt";
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(filePath);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            natur = (Naturist) objectInputStream.readObject();
+
+            objectInputStream.close();
+            fileInputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(natur);
     }
 
     static void fkingFrameTesting() {

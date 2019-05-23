@@ -1,6 +1,8 @@
 package com.pao.project.actors;
 
-import java.io.IOException;
+import java.awt.*;
+import java.io.*;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import com.pao.project.manager.*;
@@ -8,20 +10,21 @@ import com.pao.project.manager.*;
 
 public class User implements Manageable {
 
+    public static final int serialVersionUID = 12548;
     static protected int IDReference = 1;
 
-    protected Integer uniqID;
-    protected String username;
-    protected String password;
-    protected String email;
-    protected String telephone;
+    protected transient Integer uniqID;
+    protected transient String username;
+    protected transient String password;
+    protected transient String email;
+    protected transient String telephone;
 
     public User() {
         this("","","","");
     }
 
     //DELETE-ABLE
-    protected User(String username, String password, String email, String telephone) {
+    public User(String username, String password, String email, String telephone) {
         uniqID = getID();
         this.username = username;
         this.password = password;
@@ -46,8 +49,9 @@ public class User implements Manageable {
         String ID = "ID: " + uniqID;
         String usr = "Username: " + username;
         String pass = "Password: " + password;
-
-        return ID + " | " + usr + " | " + pass;
+        String mail = "e-mail: " + email;
+        String phone = "Telephone: " + telephone;
+        return ID + " | " + usr + " | " + pass + " | " + mail + " | " + phone;
     }
 
     public static String createUser() {
@@ -66,19 +70,32 @@ public class User implements Manageable {
 
     @Override
     public String[] dataToStore() {
-        String[] data = new String[2];
-        data[0] = username;
-        data[1] = password;
+        String[] data = new String[5];
+        data[0] = String.valueOf(uniqID);
+        data[1] = username;
+        data[2] = password;
+        data[3] = email;
+        data[4] = telephone;
+
         return  data;
     }
 
     @Override
     public void setData(String[] data) {
-        uniqID   = getID();
-        username = data[0];
-        password = data[1];
+        int index = 0;
+        if(data.length == 4) {
+            uniqID = getID();
+        } else {
+            uniqID = Integer.valueOf(data[0]);
+            updateIDRef(uniqID);
+            index = 1;
+        }
 
-        updateIDRef(uniqID);
+        username = data[index];
+        password = data[index + 1];
+        email = data[index + 2];
+        telephone = data[index  + 3];
+
     }
 
     @Override
@@ -105,4 +122,5 @@ public class User implements Manageable {
 
         return data;
     }
+
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.pao.project.connection.talkUI.panel.MessPanel">
+  <grid id="27dc6" binding="mainPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="5" bottom="5" right="5"/>
+    <constraints>
+      <xy x="20" y="20" width="479" height="124"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="f13cf" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-856709"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="a3af" class="javax.swing.JLabel" binding="userLabel">
+            <constraints border-constraint="North"/>
+            <properties>
+              <background color="-856709"/>
+              <font size="18"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+          <component id="2af8" class="javax.swing.JLabel" binding="messageLabel">
+            <constraints border-constraint="Center"/>
+            <properties>
+              <background color="-856709"/>
+              <text value="Label"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

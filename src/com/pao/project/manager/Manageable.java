@@ -1,12 +1,12 @@
 package com.pao.project.manager;
 
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public interface Manageable extends ProductCodes {
+public interface Manageable extends ProductCodes, Externalizable {
+    String extern_delimiter = "@%@";
     String path = "res/csv/";
     String csv_delimiter = ", |\n|\r\n";
     String csv_separator = ", ";
@@ -60,6 +60,40 @@ public interface Manageable extends ProductCodes {
 
         // Function overwritten to allow keyboard data input
     default String[] inputData(Scanner fin) {return new String[0];}
+
+
+    @Override
+    default void writeExternal(ObjectOutput objectOutput) throws IOException {
+        String[] toStore = dataToStore();
+        StringBuilder builder = new StringBuilder(toStore[0]);
+
+        for (int index = 1; index < toStore.length; index++) {
+            builder.append(extern_delimiter).append(toStore[index]);
+        }
+
+        objectOutput.writeObject(builder.toString());
+    }
+
+    @Override
+    default void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        String objRead = (String)objectInput.readObject();
+
+        Scanner scan = new Scanner(objRead);
+        scan.useDelimiter(extern_delimiter);
+
+        LinkedList<String> linkedStrings = new LinkedList<>();
+
+        while(scan.hasNext()) {
+            linkedStrings.add(scan.next());
+        }
+
+        String[] toStore = new String[linkedStrings.size()];
+        linkedStrings.toArray(toStore);
+
+        for(String elm : toStore) System.out.println(elm);
+
+        setData(toStore);
+    }
 
 }
 
