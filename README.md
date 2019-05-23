@@ -1,5 +1,16 @@
 # Online farmacy software
 
+## v2.0 - Practicing sockets and GUI
+
+| Username picking |
+| --- |
+| ![](Media/v2.0/1_usernames.png) |
+
+| Messaging |
+| --- | 
+| ![](Media/v2.0/2_messages.png) |
+
+
 ## v1.2
 
 | Objects to operate on: | Actions to do on the objects:|
