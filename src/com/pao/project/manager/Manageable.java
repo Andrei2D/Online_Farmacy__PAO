@@ -18,6 +18,7 @@ public interface Manageable extends ProductCodes, Externalizable {
     String[] dataToStore();
     void setData(String[] data);
 
+    Integer getID();
     String getName();
     int getClassMask();
 
@@ -89,8 +90,6 @@ public interface Manageable extends ProductCodes, Externalizable {
 
         String[] toStore = new String[linkedStrings.size()];
         linkedStrings.toArray(toStore);
-
-        for(String elm : toStore) System.out.println(elm);
 
         setData(toStore);
     }

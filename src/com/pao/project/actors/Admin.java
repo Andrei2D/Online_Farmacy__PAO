@@ -7,7 +7,7 @@ public class Admin extends User{
     }
 
     public Admin(String username, String password) {
-        super(username, password,"","");
+        super(genID(), username, password);
     }
 
     // SPECIFIC METHODS FOR CHANGING PRODUCTS

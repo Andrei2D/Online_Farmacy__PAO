@@ -1,8 +1,9 @@
 package com.pao.project;
 
 
+import com.pao.project.actors.Client;
 import com.pao.project.actors.User;
-import com.pao.project.gui.createacc.CreateAccount;
+import com.pao.project.database.DBConnector;
 import com.pao.project.manager.Manageable;
 import com.pao.project.manager.Manager;
 import com.pao.project.products.types.Naturist;
@@ -12,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.function.Function;
 
@@ -21,6 +21,40 @@ public class Main {
     static UserService uServ;
     public static void main(String[] args)  {
 
+    }
+
+    static void serialMultilayerTest() {
+        User user = new User(21, "mamaliga", "blanza1244");
+        Client altUser = new Client(48, "papuciGumati", "sl4p11", "cevadegenul@mail.com", "0712 554 187");
+        Request req = new Request();
+        req.code = 5;
+        req.aUser = user;
+        String filePath = "/home/andrei/Facooltate/a_file.txt";
+        System.out.println();
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath));
+            User[] arr = new User[]{user, altUser};
+            out.writeObject(arr);
+
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//
+//        user = new User();
+//
+//        try {
+//            ObjectInputStream in = new ObjectInputStream(new FileInputStream(filePath));
+//            req = (Request)in.readObject();
+//            in.close();
+//
+//        } catch (IOException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//
+//        System.out.println(req.code);
+//        System.out.println(req.aUser);
     }
 
     static void serialWriteTesting() {
@@ -60,11 +94,9 @@ public class Main {
             objectInputStream.close();
             fileInputStream.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -197,3 +229,32 @@ public class Main {
     }
 
 }
+
+class Request implements Externalizable {
+    int code;
+    User aUser;
+
+    public Request() {
+        this(0, new User());
+    }
+
+     Request(int code, User aUser) {
+        this.code = code;
+        this.aUser = aUser;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput objectOutput) throws IOException {
+        objectOutput.write(code);
+        objectOutput.writeObject(aUser);
+    }
+
+    @Override
+    public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        aUser  = (User) objectInput.readObject();
+        code = objectInput.readInt();
+    }
+
+
+}
+
